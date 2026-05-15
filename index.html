@@ -428,26 +428,93 @@
   .article-card-meta { margin-top: 14px; font-size: 11px; color: var(--text3); }
   .nav-sub { padding-left: 34px !important; }
 
+  /* === HAMBURGER BUTTON === */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    flex-shrink: 0;
+    border-radius: 6px;
+  }
+  .hamburger:hover { background: var(--bg2); }
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  /* === MOBILE OVERLAY === */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 150;
+  }
+  .mobile-overlay.active { display: block; }
+
   @media (max-width: 768px) {
-    .sidebar { display: none; }
-    .section { padding: 24px 20px 48px; }
-    .section h2 { font-size: 24px; }
+    .hamburger { display: flex; }
+    .top-bar { padding: 0 16px; gap: 10px; }
     .top-bar-subtitle { display: none; }
-    .card-grid { grid-template-columns: 1fr 1fr; }
-    .stat-grid { grid-template-columns: 1fr 1fr; }
-    .article-hub-grid { grid-template-columns: 1fr; }
+    .sidebar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      height: 100vh !important;
+      z-index: 200;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.2);
+      padding-top: 64px !important;
+      min-width: var(--sidebar-w) !important;
+    }
+    .sidebar.mobile-open { transform: translateX(0); }
+    .main { width: 100%; min-width: 0; }
+    .section { padding: 20px 16px 48px; }
+    .section h2 { font-size: 22px; }
+    /* Collapse CSS-class-based grids */
+    .card-grid, .stat-grid, .article-hub-grid {
+      grid-template-columns: 1fr !important;
+    }
+    /* Collapse ALL inline 2-col grids */
+    [style*="grid-template-columns: 1fr 1fr"],
+    [style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+    /* Wrap flex rows that could overflow */
+    [style*="display:flex"],
+    [style*="display: flex"] {
+      flex-wrap: wrap !important;
+    }
+    /* Scrollable wide blocks */
+    .arch-diagram, .table-wrap, .code-wrap { overflow-x: auto; }
+    /* Prevent images/diagrams from overflowing */
+    .section * { max-width: 100%; }
   }
 </style>
 </head>
 <body>
 
 <div class="top-bar">
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+    <span></span><span></span><span></span>
+  </button>
   <h1>
     <span class="top-bar-badge">AI Systems</span>
     Master Learning Guide
     <span class="top-bar-subtitle">Agents · Memory · Caching · Production</span>
   </h1>
 </div>
+
+<div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
 
 <div class="app">
   <!-- SIDEBAR -->
@@ -3739,6 +3806,18 @@ function toggleGroup(groupId) {
   if (chev) chev.classList.toggle('rotated');
 }
 
+// --- Mobile menu ---
+function toggleMobileMenu() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('mobile-overlay');
+  sidebar.classList.toggle('mobile-open');
+  overlay.classList.toggle('active');
+}
+function closeMobileMenu() {
+  document.querySelector('.sidebar').classList.remove('mobile-open');
+  document.getElementById('mobile-overlay').classList.remove('active');
+}
+
 // --- Navigation ---
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -3746,6 +3825,7 @@ function showSection(id) {
   document.getElementById(id).classList.add('active');
   document.getElementById('nav-' + id).classList.add('active');
   window.scrollTo(0, 0);
+  closeMobileMenu();
 }
 
 // --- Tabs ---
