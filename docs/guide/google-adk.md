@@ -48,7 +48,7 @@ graph TD
     U([User Request + session_id]) --> R
 
     subgraph ADK_RUNTIME["ADK Runtime"]
-      R["RUNNER / Orchestrator\nEvent Processor"]
+      R["Runner / Orchestrator"]
       R -->|Event Loop| A
       R <-->|read/write| SS
 
@@ -64,7 +64,7 @@ graph TD
         MS["MemoryService"]
       end
 
-      SS <-->|persist| DB[("Storage\nDB / Cloud")]
+      SS <-->|persist| DB[("Storage / DB")]
     end
 
     T -->|Stream Events| OUT([Response to User])

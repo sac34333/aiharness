@@ -88,7 +88,7 @@ graph TD
     U1T2["User A - Turn 2"] -->|routed to Node 2| N2
     LB --> N1["vLLM Node 1 (KV private)"]
     LB --> N2["vLLM Node 2 (KV private)"]
-    N2 --> NOTE["Node 2: ZERO cache - FULL RECOMPUTE"]
+    N2 --> NOTE["Zero cache: full recompute"]
     NOTE --> MISS["Cache Miss"]
 
     style MISS fill:#FADBD8,stroke:#C0392B
