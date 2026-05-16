@@ -1,3 +1,16 @@
 node_modules
 docs/.vitepress/cache
 docs/.vitepress/dist
+
+# Workspace planning / scratch files
+*.html
+AI4IT_SDLC_Setup_Guide.md
+Complete_Directory_Structure.md
+Google ADK.md
+Implementation_Checklist_Templates.md
+Learning1.md
+LinkedIn_Article_Memory_Architecture.md
+Quick_Start_Guide.md
+Summary_Complete_Plan.md
+Visual_Summary.md
+AI_Agents_MasterLearning.md
