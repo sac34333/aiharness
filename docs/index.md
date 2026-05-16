@@ -31,7 +31,7 @@ features:
     title: Memory Architecture
     details: 3-tier memory, ADK state scopes, proactive vs reactive memory. Where most agents fail.
     link: /guide/memory-architecture
-  - icon: u{2699}u{FE0F}
+  - icon: ⚙️
     title: Google ADK
     details: ADK runtime architecture, event loop, LlmAgent vs WorkflowAgent, tools, MCP, and callbacks as guardrails.
     link: /guide/google-adk
