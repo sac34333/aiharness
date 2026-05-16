@@ -4,7 +4,7 @@ title: The AI Harness — AI Systems From Theory to Production
 
 hero:
   name: "The AI Harness"
-  text: "The Playbook for AI"
+  text: "Think Deeper, Build Better"
   tagline: Technical depth for engineers. Strategic clarity for leaders. Built from real deployments.
   actions:
     - theme: brand
