@@ -1,36 +1,107 @@
 ---
-title: Agent Taxonomy — 5 Levels of AI Agents
-description: From Encyclopedia to Self-Evolving. The 5 levels of AI agent capability and when to use each in production.
+title: Agent Taxonomy — Levels 1 to 5
+description: The five levels of AI agents from basic reasoning to self-evolving systems. Pick the right level before writing a line of code.
 ---
 
-# Agent Taxonomy
+# PART 2 — Taxonomy: What Kind of Agent Are You Building?
 
-> Know exactly what you're building — and what you're not.
+---
 
-## The 5 Levels
+## The 5 Levels — From Brain to Self-Evolving System
 
-| Level | Name | Capability | Example |
-|---|---|---|---|
-| **1** | Encyclopedia | Answers questions, no actions | ChatGPT with no tools |
-| **2** | Assistant | Takes single actions on request | Booking a calendar slot |
-| **3** | Workflow Agent | Multi-step tasks, loops, branching | Customer support resolution |
-| **4** | Autonomous Agent | Defines sub-goals, self-corrects | Research + report writing |
-| **5** | Self-Evolving | Learns and updates its own behaviour | Experimental — not production-ready |
+### The Intuition
 
-## What Most Teams Are Actually Building
+Think of hiring: you wouldn't hire a contractor without knowing the job scope. Same here — pick the right level of agent for the complexity of the task.
 
-Level 3. Maybe early Level 4. If someone tells you they're at Level 5 in production, ask for the incident log.
+```
+Level 0  --  The Encyclopedia          Just knowledge, no tools
+Level 1  --  The Connected Expert      Knowledge + can look things up
+Level 2  --  The Strategist            Plans multi-step, chains outputs
+Level 3  --  The Manager               Delegates to a team of specialists
+Level 4  --  The Growing Organization  Builds its own new specialists
+```
 
-## Production Trap
+---
+
+### Level 0: Core Reasoning System (The Encyclopedia)
+
+- **What**: LLM alone, no tools, no memory
+- **What it can do**: Answer from training data
+- **Production use**: FAQ chatbot on known, static content
+- **Limit**: Knowledge cutoff. Can't act. Can't look things up.
+
+---
+
+### Level 1: The Connected Problem-Solver
+
+- **What**: LLM + external tools (Search, Calculator, DB queries)
+- **What it can do**: Answer about real-time events, current data
+- **Production use**: Customer support agent that can look up order status
+- **Technique**: Function calling — the LLM decides which tool to use, ADK executes it
+
+---
+
+### Level 2: The Strategic Problem-Solver
+
+- **What**: LLM + tools + **planning** (multi-step, uses output of step N as input to step N+1)
+- **The Key Concept**: **Context Engineering** — the output of one step is shaped into precise input for the next
+- **Production example (coffee shop case)**:
+
+```
+Step 1: maps_tool("Mountain View", "SF") → "Millbrae"
+Step 2: search_tool("good coffee in Millbrae")  <-- uses output from step 1
+```
+
+- **Production use**: Research agent, code review pipeline, document analysis workflows
+
+---
+
+### Level 3: The Collaborative Multi-Agent System
+
+- **What**: A "Project Manager" agent + specialized sub-agents
+- **Why not one giant agent**: Specialization. Each agent has a focused system prompt, relevant tools, and smaller context → cheaper, faster, more reliable
+- **Production example — Product Launch**:
+
+```
+OrchestratorAgent --> MarketingAgent   (writes press release)
+                  --> WebDevAgent      (builds landing page)
+                  --> DataAgent        (pulls competitor analysis)
+```
+
+- **Communication**: Agents share state via `session.state` or A2A protocol
+
+---
+
+### Level 4: The Self-Evolving System
+
+- **What**: System creates new tools or new agents *on the fly* when it detects a capability gap
+- **Production use**: Very experimental. Research/internal automation. Not for customer-facing production yet.
+- **The key skill**: Agent identifies "I don't have a tool for this" and generates one dynamically
+
+---
+
+## The Production Trap
 
 ::: warning
-Building a Level 4 agent when a Level 2 would solve the problem. More autonomy = more failure modes. Start simple. Add autonomy only when you have the eval infrastructure to catch failures.
+Building at Level 3 or 4 before you've validated Level 1. Most production failures come from over-engineering the agent architecture before the individual agent is proven to work reliably on its own task.
 :::
+
+Start at the lowest level that solves the problem. Add complexity only when you hit a real limit.
+
+---
 
 ## Recall Hook
 
-> More levels = more loops = more failure modes. Match autonomy to your eval maturity.
+> **Encyclopedia → Expert → Strategist → Manager → Self-Growing Org** — pick your level before you write a line of code.
 
 ---
 
-*Next: [Design Patterns →](/guide/design-patterns)*
+## Sources
+
+- Google ADK Whitepaper: *Introduction to Agents*
+
+<div class="contribute-cta">
+
+**Know a production example of each level?** [Add it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/agent-taxonomy.md) — real examples make this more useful.
+
+</div>
