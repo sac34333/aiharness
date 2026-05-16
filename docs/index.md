@@ -4,11 +4,11 @@ title: The AI Harness — AI Systems From Theory to Production
 
 hero:
   name: "The AI Harness"
-  text: "AI Systems — From Theory to Production"
+  text: "The Playbook for AI"
   tagline: Technical depth for engineers. Strategic clarity for leaders. Built from real deployments.
   actions:
     - theme: brand
-      text: Start Learning →
+      text: Technical Deep Dives
       link: /guide/what-is-agent
     - theme: alt
       text: Thought Leadership

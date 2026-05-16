@@ -18,6 +18,8 @@ export default withMermaid(defineConfig({
     hostname: 'https://theaiharness.online'
   },
 
+  appearance: false,
+
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: 'The AI Harness',

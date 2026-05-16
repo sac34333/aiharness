@@ -7,9 +7,7 @@ description: Get in touch with The AI Harness — questions, contributions, corr
 
 ## Get in Touch
 
-Have a question, a correction, or want to contribute? 
-
-**Email:** [sac.anand2@gmail.com](mailto:sac.anand2@gmail.com)
+Have a question, a correction, or want to contribute?
 
 ---
 
