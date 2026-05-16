@@ -31,6 +31,14 @@ features:
     title: Memory Architecture
     details: 3-tier memory, ADK state scopes, proactive vs reactive memory. Where most agents fail.
     link: /guide/memory-architecture
+  - icon: �️
+    title: Google ADK
+    details: ADK runtime architecture, event loop, LlmAgent vs WorkflowAgent, tools, MCP, and callbacks as guardrails.
+    link: /guide/google-adk
+  - icon: ⚡
+    title: Caching — The Economics of AI
+    details: The 4-layer caching stack — KV Cache, Prompt Caching, Semantic Caching. What makes production AI viable.
+    link: /guide/caching-overview
   - icon: 🔒
     title: Security & Interop
     details: Agent identity, least privilege, prompt injection, A2A, MCP. The production traps nobody warns you about.
@@ -39,6 +47,10 @@ features:
     title: Agent Ops & Architecture
     details: Eval datasets, LLM judges, CI/CD pipelines, full production architecture diagram.
     link: /guide/agent-ops
+  - icon: 🧭
+    title: Developer Mindset
+    details: Director vs bricklayer. Prompts as code. Why evaluations outweigh the prompt. The shift that makes agents work.
+    link: /guide/developer-mindset
 ---
 
 <div style="max-width:900px;margin:48px auto;padding:0 24px;">
@@ -51,6 +63,7 @@ Strategic perspectives on AI adoption, security risk, and enterprise deployment 
 |---|---|
 | [Token Security — The Weakest Link](/articles/token-security) | Security |
 | [Shadow AI & Unsanctioned Tools](/articles/shadow-ai) | Security |
+| [Prompt Injection in Agentic Systems](/articles/prompt-injection) | Security |
 | [How to Deploy GenAI Safely](/articles/deploy-genai-safely) | Leadership |
 | [The Lazy AI Trap](/articles/lazy-ai-trap) | Leadership |
 | [Enterprise Agents at Scale](/articles/enterprise-agents) | Leadership |
