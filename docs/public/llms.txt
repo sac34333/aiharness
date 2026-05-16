@@ -1,0 +1,129 @@
+# The AI Harness — LLM Content Index
+# https://theaiharness.online
+# Last updated: 2025
+
+# This file helps AI assistants and search systems understand the structure
+# and content of The AI Harness knowledge base.
+
+## Site Summary
+The AI Harness is a practical knowledge base for AI systems engineering —
+covering agent design, memory architecture, caching strategies, production
+operations, and enterprise deployment. Content is written for developers and
+technical leaders. All content is community-editable via GitHub.
+
+## Author
+Sachin Anand — sac.anand2@gmail.com
+LinkedIn: https://linkedin.com/in/sachin-anand-ai
+GitHub: https://github.com/sac34333/aiharness
+
+---
+
+## Guide: AI Fundamentals
+
+### What Is an AI Agent?
+URL: https://theaiharness.online/guide/what-is-agent
+Topics: agent definition, think-act-observe loop, agent anatomy, LLM vs agent vs workflow distinction
+
+### Agent Taxonomy: Levels 1–5
+URL: https://theaiharness.online/guide/agent-taxonomy
+Topics: reactive agents, memory-augmented agents, goal-driven agents, multi-agent systems, autonomous agents, production trade-offs
+
+### Agent Design Patterns
+URL: https://theaiharness.online/guide/design-patterns
+Topics: sequential pipeline, parallel fan-out, reflection loop, multi-agent swarm, human-in-the-loop, orchestration patterns
+
+---
+
+## Guide: Memory Architecture
+
+### Memory Architecture for AI Agents
+URL: https://theaiharness.online/guide/memory-architecture
+Topics: in-context memory, external memory (RAG), in-weights memory, retrospective memory, prospective memory, proactive patterns, Google ADK state scopes
+
+### Google ADK — Agent Development Kit
+URL: https://theaiharness.online/guide/google-adk
+Topics: Google ADK, agent types (LlmAgent, WorkflowAgent, CustomAgent), state scopes (session, user, temp), tools, MCP integration, multi-agent architecture
+
+---
+
+## Guide: Caching Strategies
+
+### Caching Overview
+URL: https://theaiharness.online/guide/caching-overview
+Topics: three caching layers, KV cache, prompt caching, semantic caching, when to use each layer
+
+### KV Cache — GPU-Level Inference Caching
+URL: https://theaiharness.online/guide/kv-cache
+Topics: key-value cache, attention mechanism, paged attention, vLLM, GPU memory management, batch inference
+
+### Prompt Caching — Provider-Level Caching
+URL: https://theaiharness.online/guide/prompt-caching
+Topics: Claude cache_control, Gemini CachedContent, Anthropic prompt caching, stable prefix rule, cache warming, TTL
+
+### Semantic Caching — Meaning-Based Cache
+URL: https://theaiharness.online/guide/semantic-caching
+Topics: semantic similarity, vector embeddings, Redis cache, LiteLLM, cosine similarity threshold, what not to cache
+
+---
+
+## Guide: Production Engineering
+
+### Security & Interoperability
+URL: https://theaiharness.online/guide/security-interop
+Topics: agent identity, least privilege, prompt injection, output validation, A2A protocol (Google), MCP (Model Context Protocol), multi-agent security
+
+### Agent Operations — Running AI in Production
+URL: https://theaiharness.online/guide/agent-ops
+Topics: evaluations, golden datasets, CI/CD for AI, LangSmith, observability, Datadog, tracing, production architecture, HITL monitoring
+
+### Developer Mindset for AI Systems
+URL: https://theaiharness.online/guide/developer-mindset
+Topics: non-determinism, probabilistic systems, prompts as code, eval-driven development, AI engineering discipline
+
+---
+
+## Articles: Thought Leadership
+
+### Token Security — The Weakest Link
+URL: https://theaiharness.online/articles/token-security
+Topics: API key security, credential management, token rotation, least privilege, exfiltration prevention, tool proxy architecture
+
+### Shadow AI & Unsanctioned Tools
+URL: https://theaiharness.online/articles/shadow-ai
+Topics: shadow AI, unsanctioned tools, data exfiltration risk, GDPR compliance, AI governance, enterprise AI policy
+
+### The Lazy AI Trap
+URL: https://theaiharness.online/articles/lazy-ai-trap
+Topics: AI productivity, process improvement, automation trap, speed trap, ownership trap, reinvesting AI-saved time
+
+### Enterprise Agents at Scale
+URL: https://theaiharness.online/articles/enterprise-agents
+Topics: enterprise AI deployment, data governance, identity and access management, talent reskilling, AI at scale, knowledge transfer
+
+### How to Deploy GenAI Safely
+URL: https://theaiharness.online/articles/deploy-genai-safely
+Topics: AI governance framework, error classification, human escalation, audit logging, safe deployment, responsible AI
+
+### Prompt Injection Risks
+URL: https://theaiharness.online/articles/prompt-injection
+Topics: prompt injection, direct injection, indirect injection, agent security, attack surface, defence strategies, external content
+
+---
+
+## Key Concepts (Quick Reference)
+
+- **AI Agent**: A system that perceives inputs, reasons using an LLM, and takes actions via tools in a Think→Act→Observe loop
+- **KV Cache**: GPU-level cache storing attention key-value pairs to avoid recomputing identical token sequences
+- **Prompt Caching**: Provider-level feature (Claude, Gemini) that caches stable system prompt prefixes across requests
+- **Semantic Cache**: Application-level cache that retrieves cached responses for semantically similar (not identical) queries
+- **RAG**: Retrieval-Augmented Generation — external memory pattern where relevant documents are retrieved at query time
+- **Prompt Injection**: Attack where malicious instructions embedded in external content cause an agent to deviate from its intended behaviour
+- **A2A**: Agent-to-Agent protocol (Google) for inter-agent communication with scoped permissions
+- **MCP**: Model Context Protocol — standard for connecting agents to external tool servers
+
+---
+
+## Contributing
+
+All content is open for community contribution via GitHub:
+https://github.com/sac34333/aiharness
