@@ -22,23 +22,36 @@ At Claude Code, prompt cache hit rate is monitored like uptime. They declare **S
 
 ## The System Prompt Layout — The Core Rule
 
-```
-+------------------------------------------------------------------+
-|  1. BASE SYSTEM INSTRUCTIONS + TOOLS    <- globally cached       |
-|     (static, never changes between sessions)                     |
-+------------------------------------------------------------------+
-|  2. CLAUDE.md / Memory / Project context <- cached per project   |
-|     (same within one project, changes project-to-project)        |
-+------------------------------------------------------------------+
-|  3. SESSION STATE (env, MCP config,      <- cached per session   |
-|     output style)                                                |
-+------------------------------------------------------------------+
-|  4. MESSAGES (user messages, tool        <- GROWS each turn      |
-|     results, assistant responses)          NOT cached            |
-+------------------------------------------------------------------+
-         ^ STABLE                               ^ DYNAMIC
-   Cache hits here                        No cache benefit here
-```
+<div class="layer-stack">
+<div class="layer">
+  <div class="layer-num">1</div>
+  <div class="layer-content">
+    <strong>BASE SYSTEM INSTRUCTIONS + TOOLS</strong>
+    <span>Globally cached — static, never changes between sessions. Cache hits here.</span>
+  </div>
+</div>
+<div class="layer">
+  <div class="layer-num">2</div>
+  <div class="layer-content">
+    <strong>CLAUDE.md / Memory / Project context</strong>
+    <span>Cached per project — same within one project, changes project-to-project.</span>
+  </div>
+</div>
+<div class="layer">
+  <div class="layer-num">3</div>
+  <div class="layer-content">
+    <strong>SESSION STATE (env, MCP config, output style)</strong>
+    <span>Cached per session — stable within a conversation.</span>
+  </div>
+</div>
+<div class="layer layer-miss" style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:8px;padding:1rem 1.25rem;margin-top:0.25rem;">
+  <div class="layer-num" style="background:#999;">4</div>
+  <div class="layer-content">
+    <strong>MESSAGES (user messages, tool results, assistant responses)</strong>
+    <span>Grows each turn — NOT cached. No cache benefit here.</span>
+  </div>
+</div>
+</div>
 
 **The core rule**: Prefix match, byte-for-byte, from the start. Any change *anywhere* in the prefix invalidates everything after it. Order is everything.
 
@@ -89,17 +102,41 @@ Set up alerts. Treat drops as incidents. Measure it constantly.
 
 ## Compaction — How Claude Code Handles Long Conversations
 
-```
-BEFORE (context nearly full):    FORKED COMPACTION CALL:    AFTER:
-+---------------------+          +--------------------+     +------------------------+
-| System + Tools      |          | System + Tools     |     | System + Tools         |
-| user message 1      |          | Full conversation  |     | compact_boundary       |
-| assistant + tools   |   -->    | (all messages)     | --> | Conversation summary   |
-| user message 2      |          |   cache hit=1/10   |     | Re-attached files      |
-| ... many turns ...  |          | + "Summarize this" |     | room for new turns     |
-| [compaction buffer] |          | -> Summary ~20k    |     |                        |
-+---------------------+          +--------------------+     +------------------------+
-```
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1.5rem 0;">
+<div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:8px;padding:1rem;font-size:0.85rem;">
+<strong style="display:block;margin-bottom:0.5rem;color:var(--vp-c-text-1);">BEFORE</strong>
+<span style="color:var(--vp-c-text-2);font-size:0.75rem;">context nearly full</span>
+<ul style="margin:0.75rem 0 0;padding-left:1.1rem;color:var(--vp-c-text-2);">
+<li>System + Tools</li>
+<li>user message 1</li>
+<li>assistant + tools</li>
+<li>user message 2</li>
+<li>... many turns ...</li>
+<li>[compaction buffer]</li>
+</ul>
+</div>
+<div style="background:#FEF9E7;border:1px solid #D97757;border-radius:8px;padding:1rem;font-size:0.85rem;">
+<strong style="display:block;margin-bottom:0.5rem;color:#D97757;">FORKED COMPACTION CALL</strong>
+<ul style="margin:0.75rem 0 0;padding-left:1.1rem;color:var(--vp-c-text-2);">
+<li>System + Tools (same prefix)</li>
+<li>Full conversation</li>
+<li style="color:#D97757;">cache hit = 1/10 price</li>
+<li>+ "Summarize this"</li>
+<li>→ Summary ~20k tokens</li>
+</ul>
+</div>
+<div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:8px;padding:1rem;font-size:0.85rem;">
+<strong style="display:block;margin-bottom:0.5rem;color:var(--vp-c-text-1);">AFTER</strong>
+<span style="color:var(--vp-c-text-2);font-size:0.75rem;">context cleared</span>
+<ul style="margin:0.75rem 0 0;padding-left:1.1rem;color:var(--vp-c-text-2);">
+<li>System + Tools</li>
+<li>compact_boundary</li>
+<li>Conversation summary</li>
+<li>Re-attached files</li>
+<li>room for new turns</li>
+</ul>
+</div>
+</div>
 
 The forked call uses the exact parent prefix → cache hit → you pay 1/10th price for the largest part. Only the new compaction prompt is billed at full rate.
 
