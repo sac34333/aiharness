@@ -23,18 +23,29 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{Q \cdot K^T}{\sqrt{d_k}}
 
 For each new token, the model needs K and V tensors for all previous tokens. Without caching, these are recomputed every time.
 
-```
-WITHOUT KV CACHE:                    WITH KV CACHE:
+<div class="compare-grid">
+<div class="compare-col bad">
+<h4>Without KV Cache</h4>
 
-[token 1][token 2]...[token N]       KV Cache (GPU HBM)
-         |                           +----------------------+
-  Compute K,V for                    | K1,V1 K2,V2 ... Kn,Vn| (stored)
-  ALL tokens every step              +----------------------+
-  O(n^2) per token generated               | retrieve (fast!)
-  GPU overloaded                    New token -> compute only K_new, V_new
-  High latency                      -> append to cache
-  High cost                         O(n) per token generated
-```
+- `[token 1][token 2]...[token N]`
+- Compute K,V for **ALL** tokens every step
+- **O(n²)** per token generated
+- GPU overloaded
+- High latency · High cost
+
+</div>
+<div class="compare-col good">
+<h4>With KV Cache</h4>
+
+**KV Cache (GPU HBM)** stores K₁,V₁ K₂,V₂ … Kₙ,Vₙ
+
+- New token → compute only K_new, V_new → append
+- **O(n)** per token generated
+- Cache hit → retrieve fast
+- GPU freed · Low latency
+
+</div>
+</div>
 
 **What's cached**: Static prefix (system prompt + tools) is computed once and cached forever. Dynamic suffix (user messages, tool results) are appended each turn.
 
@@ -70,33 +81,37 @@ Key win: **Shared Prefix Pages** — 1000 users sharing the same RAG context →
 
 **Add a second node behind a load balancer**: the rules change completely.
 
-```
-MULTI-NODE PROBLEM:
-Load Balancer
-      |
-      +---- vLLM Node 1 ---- KV Cache (private, GPU-local)
-      +---- vLLM Node 2 ---- KV Cache (private, GPU-local)
+```mermaid
+graph TD
+    LB["🔀 Load Balancer"]
+    LB --> N1["vLLM Node 1<br/>KV Cache ❌ private"]
+    LB --> N2["vLLM Node 2<br/>KV Cache ❌ private"]
 
-User A turn 1 -> routed to Node 1 -> KV computed, cached locally
-User A turn 2 -> routed to Node 2 -> Node 2 has ZERO cache for User A
-                                   -> FULL RECOMPUTE, wasted GPU cycles
+    U1["User A — Turn 1"] -->|routed to Node 1| N1
+    U1T2["User A — Turn 2"] -->|routed to Node 2| N2
+    N2 -->|"Node 2 has ZERO cache<br/>→ FULL RECOMPUTE 💸"| MISS["Cache Miss"]
+
+    style MISS fill:#FADBD8,stroke:#C0392B
 ```
 
 **LMCache** solves this by treating KV cache as *shared infrastructure* rather than private per-node memory:
 
-```
-              Load Balancer
-                    |
-         +----------+-----------+
-    vLLM Node 1           vLLM Node 2
-    LMCache Connector     LMCache Connector
-         +----------+-----------+
-                    |
-        SHARED KV CACHE TIERS:
-        +--------------------------------------+
-        |  GPU HBM  |  CPU RAM  |  S3/ONTAP   |
-        |  (hot)    |  (warm)   |  (cold)      |
-        +--------------------------------------+
+```mermaid
+graph TD
+    LB2["🔀 Load Balancer"]
+    LB2 --> N3["vLLM Node 1 + LMCache"]
+    LB2 --> N4["vLLM Node 2 + LMCache"]
+    N3 <--> SHARED
+    N4 <--> SHARED
+
+    subgraph SHARED["Shared KV Cache Tiers"]
+      GPU["🔥 GPU HBM (hot)"]
+      CPU["🌡️ CPU RAM (warm)"]
+      S3["❄️ S3 / ONTAP (cold)"]
+      GPU --> CPU --> S3
+    end
+
+    style SHARED fill:#F3EFE8,stroke:#DDD8CE
 ```
 
 **Critical config**: Use `kv_role: "kv_both"` (not just prefill OR decode). Decode-only caching creates subtle mismatches between what was cached during prefill and what is needed during generation.

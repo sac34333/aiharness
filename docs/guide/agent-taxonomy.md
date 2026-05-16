@@ -13,12 +13,21 @@ description: The five levels of AI agents from basic reasoning to self-evolving 
 
 Think of hiring: you wouldn't hire a contractor without knowing the job scope. Same here — pick the right level of agent for the complexity of the task.
 
-```
-Level 0  --  The Encyclopedia          Just knowledge, no tools
-Level 1  --  The Connected Expert      Knowledge + can look things up
-Level 2  --  The Strategist            Plans multi-step, chains outputs
-Level 3  --  The Manager               Delegates to a team of specialists
-Level 4  --  The Growing Organization  Builds its own new specialists
+```mermaid
+graph LR
+    L0["Level 0<br/>📚 Encyclopedia<br/><em>LLM only, no tools</em>"]
+    L1["Level 1<br/>🔌 Connected Expert<br/><em>LLM + tools</em>"]
+    L2["Level 2<br/>♟️ Strategist<br/><em>Multi-step planning</em>"]
+    L3["Level 3<br/>👔 Manager<br/><em>Delegates to specialists</em>"]
+    L4["Level 4<br/>🌱 Self-Growing Org<br/><em>Builds its own agents</em>"]
+
+    L0 --> L1 --> L2 --> L3 --> L4
+
+    style L0 fill:#EAE4DA,stroke:#DDD8CE
+    style L1 fill:#EAE4DA,stroke:#DDD8CE
+    style L2 fill:#EAE4DA,stroke:#DDD8CE
+    style L3 fill:#EAE4DA,stroke:#DDD8CE
+    style L4 fill:#EAE4DA,stroke:#DDD8CE
 ```
 
 ---

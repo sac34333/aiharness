@@ -13,32 +13,39 @@ description: The four caching layers that make production AI systems economicall
 
 Every production AI request passes through up to four caching layers:
 
-```
-User Request
-     |
-+----------------------------------------------------+
-| LAYER 1: Semantic Cache (vector DB)                |
-| Meaning-level match. Fast if similar queries repeat|
-| Danger: must include context window in cache key.  |
-+--------------------+-------------------------------+
-                     | miss
-+----------------------------------------------------+
-| LAYER 2: Exact Prompt Cache (Redis/API-level)      |
-| Byte-exact prefix match. Free via API (Claude/Gemini|
-| Gemini explicit TTL. Claude: structure prompt right.|
-+--------------------+-------------------------------+
-                     | miss
-+----------------------------------------------------+
-| LAYER 3: LLM Inference                             |
-| Actual model call. Most expensive. Unavoidable miss.|
-+--------------------+-------------------------------+
-                     | (inside the server, transparent)
-+----------------------------------------------------+
-| LAYER 4: KV Cache (GPU HBM -> CPU RAM -> S3)       |
-| Prefix reuse at inference time. Paged KV for single |
-| node. LMCache + tiered storage for multi-node.     |
-+----------------------------------------------------+
-```
+<div class="layer-stack">
+<div class="layer">
+  <div class="layer-num">1</div>
+  <div class="layer-content">
+    <strong>Semantic Cache (Vector DB)</strong>
+    <span>Meaning-level match. Fastest when similar queries repeat. Must include context window in cache key.</span>
+  </div>
+</div>
+<div class="layer-miss">↓ cache miss</div>
+<div class="layer">
+  <div class="layer-num">2</div>
+  <div class="layer-content">
+    <strong>Exact Prompt Cache (Redis / API-level)</strong>
+    <span>Byte-exact prefix match. ~10% of input token price on hit. Free via Claude/Gemini API — just structure your prompt right.</span>
+  </div>
+</div>
+<div class="layer-miss">↓ cache miss</div>
+<div class="layer">
+  <div class="layer-num">3</div>
+  <div class="layer-content">
+    <strong>LLM Inference</strong>
+    <span>Actual model call. Most expensive. Unavoidable on a cold miss.</span>
+  </div>
+</div>
+<div class="layer-miss">↓ inside the inference server (transparent to you)</div>
+<div class="layer">
+  <div class="layer-num">4</div>
+  <div class="layer-content">
+    <strong>KV Cache (GPU HBM → CPU RAM → S3)</strong>
+    <span>Token-level prefix reuse. vLLM paged attention for single node. LMCache + tiered storage for multi-node.</span>
+  </div>
+</div>
+</div>
 
 ---
 

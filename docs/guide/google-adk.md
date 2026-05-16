@@ -15,55 +15,76 @@ ADK is built on two principles that differentiate it from simpler frameworks:
 Every action is an immutable **Event**: user messages, agent replies, tool calls, state changes. The system processes events one by one in an Event Loop. This makes the system auditable, debuggable, and resumable.
 
 **2. Compute / Memory Separation**
-```
-Agent logic (Compute)  <-->  Session Service (Memory)
-     ^                           ^
-  Stateless                  Persistent
-  Can crash               Survives crash
-  Can scale               Single source of truth
-```
+<div class="compare-grid">
+<div class="compare-col">
+<h4>Compute (Agent Logic)</h4>
+
+- Stateless
+- Can crash — and that's okay
+- Can scale horizontally
+- Runs the Think→Act→Observe loop
+
+</div>
+<div class="compare-col">
+<h4>Memory (Session Service)</h4>
+
+- Persistent across crashes
+- Single source of truth
+- Survives server restarts
+- Stored in Postgres / Vertex AI
+
+</div>
+</div>
+
+> **Why this matters**: If a server crashes mid-workflow, ADK resumes from the last saved event. Disciplined separation of concerns — not magic.
 If a server crashes mid-workflow, ADK resumes from the last saved state. This is not magic — it is disciplined separation of concerns.
 
 ---
 
 ## 5.2 The Runtime Architecture
 
-```
-                        ADK RUNTIME
-+----------------------------------------------------------+
-|                                                          |
-|  User                                                    |
-|   | (1) "Help me do X" + session_id                     |
-|   v                                                      |
-|  RUNNER (Orchestrator)     <-->  SERVICES                |
-|  +---------------------+         |- SessionService       |
-|  |   Event Processor   |         |- ArtifactService      |
-|  +--------+------------+         +- MemoryService        |
-|           |                           ^                  |
-|         (2) Event Loop          STORAGE (DB/Cloud)       |
-|      Ask v        ^ Yield                                |
-|  EXECUTION LOGIC                                         |
-|  |- Agent logic                                          |
-|  |- LLM invocations                                      |
-|  |- Callbacks                                            |
-|  +- Tools                                                |
-|                                                          |
-|  (3) Stream<Event> --> User                              |
-+----------------------------------------------------------+
+```mermaid
+graph TD
+    U([User Request + session_id]) --> R
+
+    subgraph ADK_RUNTIME["ADK Runtime"]
+      R["🎛️ RUNNER / Orchestrator<br/>Event Processor"]
+      R -->|Event Loop| EX
+
+      subgraph EX["Execution Logic"]
+        A["Agent logic"]
+        L["LLM invocations"]
+        C["Callbacks"]
+        T["Tools"]
+      end
+
+      R <-->|read/write| SVC
+
+      subgraph SVC["Services"]
+        SS["SessionService"]
+        AS["ArtifactService"]
+        MS["MemoryService"]
+      end
+
+      SVC <-->|persist| DB[("Storage<br/>DB / Cloud")]
+    end
+
+    EX -->|Stream Events| OUT([Response to User])
 ```
 
 ### The Event Loop — The Most Critical Concept in ADK
 
-```
-EXECUTE -> YIELD -> PAUSE -> PROCESS -> RESUME -> EXECUTE...
-
-1. Agent runs logic
-2. Needs to do something (send message, call tool, update state)
-3. Agent YIELDS an Event — it STOPS running
-4. Runner takes the event, persists state via SessionService
-5. Runner RESUMES the agent
-6. Agent continues with the freshly persisted state
-```
+<div class="flow-diagram">
+<div class="flow-step">⚙️ <strong>EXECUTE</strong> — Agent runs logic</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">📤 <strong>YIELD</strong> — Agent emits an Event and <em>stops running</em></div>
+<div class="flow-arrow"></div>
+<div class="flow-step">💾 <strong>PERSIST</strong> — Runner saves state via SessionService (survives crashes here)</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">▶️ <strong>RESUME</strong> — Runner restarts the agent with fresh persisted state</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">🔁 <strong>EXECUTE</strong> — Loops until agent returns final answer</div>
+</div>
 
 **Why this matters in production**: Step 4 is where state is saved to a database. If the server dies between step 3 and 5, the state is already persisted — you replay from the last event.
 

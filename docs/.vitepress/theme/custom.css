@@ -77,3 +77,153 @@
   border-radius: 8px;
   font-size: 14px;
 }
+
+/* ── Diagram comparison grid (side-by-side WITHOUT/WITH) ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+.compare-grid .compare-col {
+  background: var(--vp-c-bg-soft);
+  border: 1.5px solid var(--vp-c-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.compare-grid .compare-col h4 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+  border-bottom: 2px solid var(--vp-c-brand-1);
+  padding-bottom: 8px;
+}
+.compare-grid .compare-col.bad { border-color: #C0392B; }
+.compare-grid .compare-col.bad h4 { border-color: #C0392B; color: #C0392B; }
+.compare-grid .compare-col.good { border-color: #27AE60; }
+.compare-grid .compare-col.good h4 { border-color: #27AE60; color: #27AE60; }
+.compare-grid .compare-col ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ── Flow diagram (vertical steps with arrows) ── */
+.flow-diagram {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.flow-step {
+  background: var(--vp-c-bg-soft);
+  border: 1.5px solid var(--vp-c-border);
+  border-left: 4px solid var(--vp-c-brand-1);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+}
+.flow-step code {
+  background: var(--vp-c-bg-mute);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  padding: 4px 0 4px 24px;
+  color: var(--vp-c-brand-1);
+  font-size: 20px;
+  line-height: 1;
+}
+.flow-arrow::before { content: '↓'; }
+
+/* ── Layer stack (numbered tiers) ── */
+.layer-stack {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.layer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--vp-c-bg-soft);
+  border: 1.5px solid var(--vp-c-border);
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 14px;
+}
+.layer-num {
+  background: var(--vp-c-brand-1);
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.layer-content strong { display: block; font-size: 14px; margin-bottom: 2px; }
+.layer-content span { font-size: 13px; color: var(--vp-c-text-2); }
+.layer-miss {
+  text-align: center;
+  font-size: 12px;
+  color: var(--vp-c-text-2);
+  padding: 2px 0;
+  letter-spacing: 0.04em;
+}
+
+/* ── Mermaid diagram styling ── */
+.mermaid {
+  margin: 24px 0;
+  display: flex;
+  justify-content: center;
+}
+.mermaid svg {
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+/* ── Architecture box (single styled panel) ── */
+.arch-box {
+  background: var(--vp-c-bg-soft);
+  border: 1.5px solid var(--vp-c-border);
+  border-radius: 10px;
+  padding: 24px;
+  margin: 24px 0;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre;
+  overflow-x: auto;
+}
+.arch-box .arch-title {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+  margin-bottom: 16px;
+  display: block;
+  white-space: normal;
+}
+
+@media (max-width: 600px) {
+  .compare-grid { grid-template-columns: 1fr; }
+  .arch-box { font-size: 11px; padding: 16px; }
+}

@@ -21,17 +21,23 @@ description: Agent identity as a third security principal, least privilege, prom
 
 ### Defense-In-Depth (Two Layers)
 
-```
-LAYER 1: Deterministic Guardrails (hardcoded rules, outside LLM)
-         -> "No purchase over $100 without human approval"
-         -> "Never call DELETE endpoints"
-         -> Implemented as: before_tool_callback, policy engines
-
-LAYER 2: Reasoning-Based Defenses (AI reviewing AI)
-         -> Specialized "guard model" reviews agent's plan before execution
-         -> Flags risky steps: "This action will delete all user data -- block?"
-         -> Slower but catches complex, context-dependent threats
-```
+<div class="layer-stack">
+<div class="layer">
+  <div class="layer-num">1</div>
+  <div class="layer-content">
+    <strong>Deterministic Guardrails — hardcoded rules, outside the LLM</strong>
+    <span>"No purchase over $100 without human approval" · "Never call DELETE endpoints" · Implemented as <code>before_tool_callback</code>, policy engines</span>
+  </div>
+</div>
+<div class="layer-miss">↓ passes layer 1</div>
+<div class="layer">
+  <div class="layer-num">2</div>
+  <div class="layer-content">
+    <strong>Reasoning-Based Defenses — AI reviewing AI</strong>
+    <span>Specialized guard model reviews the agent's plan before execution. Flags risky steps. Slower but catches complex, context-dependent threats.</span>
+  </div>
+</div>
+</div>
 
 ---
 

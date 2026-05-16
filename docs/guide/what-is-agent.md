@@ -112,19 +112,19 @@ That is exactly the agent loop.
 
 ### The Technical Reality
 
-```
-+---------------------------------------------+
-|              AGENT LOOP                     |
-|                                             |
-|  1. MISSION        User goal arrives        |
-|  2. SCAN           Load context + memory    |
-|  3. THINK          LLM reasons, makes plan  |
-|  4. ACT            Call a tool / API        |
-|  5. OBSERVE        Get result, update state |
-|  (loop until done)                          |
-|  6. REPORT         Final answer to user     |
-+---------------------------------------------+
-```
+<div class="flow-diagram">
+<div class="flow-step">🎯 <strong>1. MISSION</strong> — User goal arrives</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">🔍 <strong>2. SCAN</strong> — Load context + memory</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">🧠 <strong>3. THINK</strong> — LLM reasons, makes plan</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">⚡ <strong>4. ACT</strong> — Call a tool / API</div>
+<div class="flow-arrow"></div>
+<div class="flow-step">👁️ <strong>5. OBSERVE</strong> — Get result, update state → <em>loop back to THINK until done</em></div>
+<div class="flow-arrow"></div>
+<div class="flow-step">✅ <strong>6. REPORT</strong> — Final answer to user</div>
+</div>
 
 The orchestration layer manages this loop. Each cycle:
 - The model sees: system prompt + conversation history + tool results so far

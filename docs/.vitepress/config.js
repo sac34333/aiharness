@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: 'The AI Harness',
   description: 'AI Systems — From Theory to Production. Technical depth for engineers. Strategic clarity for leaders.',
   lang: 'en-US',
@@ -109,5 +110,23 @@ export default defineConfig({
       message: 'Built from real deployments. Not theory.',
       copyright: 'theaiharness.online · © 2026 Sachin Anand'
     }
+  },
+
+  mermaid: {
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#EAE4DA',
+      primaryTextColor: '#1A1714',
+      primaryBorderColor: '#D97757',
+      lineColor: '#D97757',
+      secondaryColor: '#F3EFE8',
+      tertiaryColor: '#FAFAF8',
+      edgeLabelBackground: '#FAFAF8',
+      fontFamily: 'Inter, system-ui, sans-serif',
+      fontSize: '14px',
+    }
+  },
+  mermaidPlugin: {
+    class: 'mermaid'
   }
-})
+}))
