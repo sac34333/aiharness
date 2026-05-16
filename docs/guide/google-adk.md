@@ -48,17 +48,15 @@ graph TD
     U([User Request + session_id]) --> R
 
     subgraph ADK_RUNTIME["ADK Runtime"]
-      R["🎛️ RUNNER / Orchestrator<br/>Event Processor"]
-      R -->|Event Loop| EX
+      R["RUNNER / Orchestrator\nEvent Processor"]
+      R -->|Event Loop| A
+      R <-->|read/write| SS
 
       subgraph EX["Execution Logic"]
-        A["Agent logic"]
-        L["LLM invocations"]
-        C["Callbacks"]
-        T["Tools"]
+        A["Agent logic"] --> L["LLM invocations"]
+        L --> C["Callbacks"]
+        C --> T["Tools"]
       end
-
-      R <-->|read/write| SVC
 
       subgraph SVC["Services"]
         SS["SessionService"]
@@ -66,10 +64,10 @@ graph TD
         MS["MemoryService"]
       end
 
-      SVC <-->|persist| DB[("Storage<br/>DB / Cloud")]
+      SS <-->|persist| DB[("Storage\nDB / Cloud")]
     end
 
-    EX -->|Stream Events| OUT([Response to User])
+    T -->|Stream Events| OUT([Response to User])
 ```
 
 ### The Event Loop — The Most Critical Concept in ADK
