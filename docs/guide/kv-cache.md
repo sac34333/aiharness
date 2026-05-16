@@ -84,12 +84,11 @@ Key win: **Shared Prefix Pages** — 1000 users sharing the same RAG context →
 ```mermaid
 graph TD
     LB["Load Balancer"]
-    LB --> N1["vLLM Node 1<br/>KV Cache — private"]
-    LB --> N2["vLLM Node 2<br/>KV Cache — private"]
-
-    U1["User A — Turn 1"] -->|routed to Node 1| N1
-    U1T2["User A — Turn 2"] -->|routed to Node 2| N2
-    N2 --> NOTE["Node 2 has ZERO cache<br/>→ FULL RECOMPUTE"]
+    U1["User A - Turn 1"] -->|routed to Node 1| N1
+    U1T2["User A - Turn 2"] -->|routed to Node 2| N2
+    LB --> N1["vLLM Node 1 (KV private)"]
+    LB --> N2["vLLM Node 2 (KV private)"]
+    N2 --> NOTE["Node 2: ZERO cache - FULL RECOMPUTE"]
     NOTE --> MISS["Cache Miss"]
 
     style MISS fill:#FADBD8,stroke:#C0392B
