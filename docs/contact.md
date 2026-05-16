@@ -31,6 +31,6 @@ Every article page has a "contribute" link at the bottom that takes you directly
 
 ## About the Site
 
-**The AI Harness** is built and maintained by [Sachin Anand](https://linkedin.com/in/sachin-anand-ai). It exists to make AI systems knowledge accessible — practical, honest, and community-tested.
+**The AI Harness** is built and maintained by [Sachin Anand](https://www.linkedin.com/in/sachin4/). It exists to make AI systems knowledge accessible — practical, honest, and community-tested.
 
 Built with [VitePress](https://vitepress.dev/). Hosted on [Cloudflare Pages](https://pages.cloudflare.com/). Source on [GitHub](https://github.com/sac34333/aiharness).

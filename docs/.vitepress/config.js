@@ -96,7 +96,7 @@ export default withMermaid(defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/sac34333/aiharness' },
-      { icon: 'linkedin', link: 'https://linkedin.com/in/sachin-anand' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/sachin4/' },
     ],
 
     editLink: {
