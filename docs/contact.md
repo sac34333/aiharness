@@ -13,11 +13,12 @@ The AI Harness is designed for community contributions. If you have:
 
 The best way to contribute is directly via GitHub:
 
-1. [Browse the content on GitHub](https://github.com/sac34333/aiharness/tree/main/docs)
-2. Click "Edit this file" on any page
-3. Submit a pull request — reviewed before publishing
+1. [Browse the guide on GitHub](https://github.com/sac34333/aiharness/tree/main/docs/guide) or [browse articles](https://github.com/sac34333/aiharness/tree/main/docs/articles)
+2. **To edit** — click any `.md` file, then click the pencil icon to edit
+3. **To add new content** — click "Add file" → "Create new file", name it `your-topic.md`, write in Markdown
+4. Submit a pull request — every submission is reviewed before publishing
 
-Every article page has a "contribute" link at the bottom that takes you directly to the editor for that page.
+All contributions must be `.md` files inside `docs/guide/` or `docs/articles/` only.
 
 ---
 
