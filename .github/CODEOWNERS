@@ -1,0 +1,13 @@
+# All changes require owner review by default
+* @sac34333
+
+# Config, public assets, and root files — owner approval mandatory
+docs/.vitepress/ @sac34333
+docs/public/ @sac34333
+package.json @sac34333
+package-lock.json @sac34333
+.gitignore @sac34333
+
+# Guide and articles — community contributions welcome, still reviewed by owner
+docs/guide/ @sac34333
+docs/articles/ @sac34333
