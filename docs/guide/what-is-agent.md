@@ -7,6 +7,8 @@ description: From LLM autocomplete to autonomous actors. The shift from predicto
 
 > Every section follows the same 4-part structure: **The Intuition** → **The Technical Reality** → **The Production Trap** → **The Recall Hook**
 
+> **Reference note**: Several examples in this guide use [Google ADK](https://adk.dev/) — an open-source agent development framework — to illustrate production patterns. The principles apply across frameworks.
+
 ---
 
 ## 1.1 The Shift: Predictor → Actor
@@ -86,6 +88,16 @@ People think "agent" = "just add a prompt." It's not. An agent is a **complete a
 - Manages *memory*: what the agent knows right now (short-term) vs. what it should remember across sessions (long-term)
 - Design choice: No-code builders (fast, limited) vs. code-first frameworks like **ADK** (full control, production-grade)
 
+**CoT vs ReAct — the two reasoning modes:**
+
+| | Chain-of-Thought (CoT) | ReAct |
+|---|---|---|
+| **What it does** | Internal reasoning only | Reasoning + tool calls interleaved |
+| **Best for** | Logic, planning, static tasks | Live data, real-world actions |
+| **Example** | Drafting a plan, solving a puzzle | Booking a flight, checking a stock price |
+
+> Modern agents use both — CoT for internal reasoning, ReAct when external actions are needed.
+
 **DEPLOYMENT (The Body)**
 - Not just "put it on a server" — monitoring, logging, rate limiting, auth
 - Agents talk to users via GUI or to **other agents via A2A protocol**
@@ -133,19 +145,9 @@ The orchestration layer manages this loop. Each cycle:
 
 **ReAct Pattern** (most common reasoning strategy):
 
-```
-Thought: "I need to find the halfway point first"
-Action: maps_tool(origin="Mountain View", destination="SF")
-Observation: "Halfway point is Millbrae"
-Thought: "Now I search for coffee in Millbrae"
-Action: search_tool(query="good coffee in Millbrae")
-Observation: [results...]
-Final Answer: "Try Blue Bottle in Millbrae"
-```
-
 ### The Production Trap
 
-Loops can go infinite. Always set `max_llm_calls` (ADK default: 500). Also: the agent think step costs tokens every iteration. A poorly-scoped task can burn through budget fast.
+Loops can go infinite. Always set `max_llm_calls`. Also: the agent think step costs tokens every iteration.
 
 ### Recall Hook
 
@@ -156,7 +158,7 @@ Loops can go infinite. Always set `max_llm_calls` (ADK default: 500). Also: the 
 ## Sources
 
 - Google ADK Whitepaper: *Introduction to Agents*
-- Google ADK Documentation: [ai.google.dev/adk](https://ai.google.dev/adk)
+- Google ADK Documentation: [adk.dev](https://adk.dev/)
 
 <div class="contribute-cta">
 
