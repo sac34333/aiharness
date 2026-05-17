@@ -28,7 +28,7 @@ export default withMermaid(defineConfig({
     nav: [
       { text: 'Learning Guide', link: '/guide/what-is-agent' },
       { text: 'Thought Leadership', link: '/articles/' },
-      { text: 'Contact', link: '/contact' },
+      { text: 'Contribute & Contact', link: '/contact' },
     ],
 
     sidebar: {

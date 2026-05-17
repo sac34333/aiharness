@@ -1,9 +1,7 @@
 ---
-title: Contact
-description: Get in touch with The AI Harness — questions, contributions, corrections, and feedback welcome.
+title: Contribute & Contact
+description: Contribute to The AI Harness or get in touch with Sachin Anand.
 ---
-
-# Contact
 
 ## Contribute to the Content
 
@@ -23,7 +21,7 @@ Every article page has a "contribute" link at the bottom that takes you directly
 
 ---
 
-## About the Site
+## Contact
 
 <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="light" data-type="HORIZONTAL" data-vanity="sachin4" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/sachin4?trk=profile-badge"></a></div>
 
