@@ -12,7 +12,7 @@ export default withMermaid(defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'The AI Harness' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['script', { src: 'https://platform.linkedin.com/badges/js/profile.js', async: '', defer: '', type: 'text/javascript' }],
+    
     ['meta', { name: 'google-site-verification', content: 'kCRu2oxPQWDof9o5AYhns0ANhsEpnzg4Ho5BnLDdJbs' }],
   ],
 
