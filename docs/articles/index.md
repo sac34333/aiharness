@@ -17,6 +17,7 @@ Strategic perspectives on AI adoption, security risk, and enterprise deployment 
 - [The Lazy AI Trap](/articles/lazy-ai-trap) — Why AI makes bad processes faster, not better.
 - [Enterprise Agents at Scale](/articles/enterprise-agents) — What actually changes when you deploy AI agents across a large organisation.
 - [How to Deploy GenAI Safely](/articles/deploy-genai-safely) — The governance framework that makes AI safe without making it useless.
+- [Sovereign AI — What It Is and Why It Matters](/articles/sovereign-ai) — Why most countries are about to become tenants in someone else's AI.
 
 ## Tools & Implementation
 
