@@ -86,6 +86,7 @@ export default withMermaid(defineConfig({
             { text: 'Enterprise Agents at Scale', link: '/articles/enterprise-agents' },
             { text: 'Deploy GenAI Safely', link: '/articles/deploy-genai-safely' },
             { text: 'Sovereign AI', link: '/articles/sovereign-ai' },
+            { text: 'AI Offense Before Defense', link: '/articles/ai-offense-before-defense' },
           ]
         },
         {

@@ -11,6 +11,7 @@ Strategic perspectives on AI adoption, security risk, and enterprise deployment 
 
 - [Token Security — The Weakest Link](/articles/token-security) — Why your API keys are your biggest AI security risk, and what to do about it.
 - [Shadow AI & Unsanctioned Tools](/articles/shadow-ai) — The tools your teams are already using, without you knowing.
+- [AI Offense Before Defense](/articles/ai-offense-before-defense) — Why defenders should use AI against themselves first — before attackers do.
 
 ## Leadership & Strategy
 

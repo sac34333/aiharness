@@ -68,6 +68,7 @@ Strategic perspectives on AI adoption, security risk, and enterprise deployment 
 | [The Lazy AI Trap](/articles/lazy-ai-trap) | Leadership |
 | [Enterprise Agents at Scale](/articles/enterprise-agents) | Leadership |
 | [Sovereign AI — What It Is and Why It Matters](/articles/sovereign-ai) | Leadership |
+| [AI Offense Before Defense](/articles/ai-offense-before-defense) | Security |
 
 ---
 
