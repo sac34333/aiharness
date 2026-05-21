@@ -11,7 +11,9 @@ description: Security leaders should turn offensive AI tools on their own system
 
 ## The Defenders' Advantage No One Talks About
 
-Yinon Costica, co-founder of Wiz (now part of Google), articulated something most security leaders haven't internalised yet:
+Yinon Costica, co-founder of Wiz, articulated something most security leaders haven't internalised yet:
+
+Wiz is a cloud security platform that maps an organisation's entire IT estate — infra, apps, APIs, data — to find exposure, misconfigurations, and attack paths. Acquired by Google for $32bn, it became the industry's largest cybersecurity purchase and a signal that security infrastructure itself is being rebuilt around AI agents.
 
 > "If, as defenders, we take the first movers' advantage and we use the AI against ourselves, with the context we have, we actually stand a chance to win. But we need to act fast."
 
