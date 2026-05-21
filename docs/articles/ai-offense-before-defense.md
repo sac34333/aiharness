@@ -1,6 +1,6 @@
 ---
 title: AI Offense Before Defense
-description: Security leaders should turn offensive AI tools on their own systems before threat actors do. The defenders who move first win — because they have something attackers don't: context.
+description: "Security leaders should turn offensive AI tools on their own systems before threat actors do. The defenders who move first win — because they have something attackers don't: context."
 ---
 
 # AI Offense Before Defense
