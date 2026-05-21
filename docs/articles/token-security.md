@@ -1,9 +1,9 @@
 ---
-title: Token Security — The Weakest Link in Your AI Stack
+title: Token Security - The Weakest Link in Your AI Stack
 description: API keys, bearer tokens, and service credentials are the most exploited attack surface in AI deployments. Here's what that means and how to fix it.
 ---
 
-# Token Security — The Weakest Link
+# Token Security - The Weakest Link
 
 > Your AI stack is only as secure as the credentials it runs on. Most teams don't find this out until something goes wrong.
 
@@ -34,7 +34,7 @@ An agent reads a web page to answer a question. The web page contains hidden ins
 
 ### 1. Rotate Everything
 
-Every credential should have a maximum lifetime. Build rotation into your deployment pipeline — not as a manual task.
+Every credential should have a maximum lifetime. Build rotation into your deployment pipeline - not as a manual task.
 
 ### 2. Scope to Minimum
 
@@ -61,10 +61,10 @@ The agent never holds credentials directly. It calls a tool proxy that holds the
 
 ---
 
-*See also: [Security & Interop — Technical Deep Dive](/guide/security-interop)*
+*See also: [Security & Interop - Technical Deep Dive](/guide/security-interop)*
 
 <div class="contribute-cta">
 
-**Seen a token security incident in the wild (anonymised)?** [Add it to this page](https://github.com/sac34333/aiharness/edit/main/docs/articles/token-security.md) — real examples make this better for everyone.
+**Seen a token security incident in the wild (anonymised)?** [Add it to this page](https://github.com/sac34333/aiharness/edit/main/docs/articles/token-security.md) - real examples make this better for everyone.
 
 </div>

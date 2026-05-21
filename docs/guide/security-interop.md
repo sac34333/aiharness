@@ -3,7 +3,7 @@ title: Security & Interoperability for AI Agents
 description: Agent identity as a third security principal, least privilege, prompt injection defense, ADK callbacks as guardrails, A2A protocol, and MCP integration.
 ---
 
-# PARTS 7 & 8 — Security and Agent Interoperability
+# PARTS 7 & 8 - Security and Agent Interoperability
 
 ---
 
@@ -25,7 +25,7 @@ description: Agent identity as a third security principal, least privilege, prom
 <div class="layer">
   <div class="layer-num">1</div>
   <div class="layer-content">
-    <strong>Deterministic Guardrails — hardcoded rules, outside the LLM</strong>
+    <strong>Deterministic Guardrails - hardcoded rules, outside the LLM</strong>
     <span>"No purchase over $100 without human approval" · "Never call DELETE endpoints" · Implemented as <code>before_tool_callback</code>, policy engines</span>
   </div>
 </div>
@@ -33,7 +33,7 @@ description: Agent identity as a third security principal, least privilege, prom
 <div class="layer">
   <div class="layer-num">2</div>
   <div class="layer-content">
-    <strong>Reasoning-Based Defenses — AI reviewing AI</strong>
+    <strong>Reasoning-Based Defenses - AI reviewing AI</strong>
     <span>Specialized guard model reviews the agent's plan before execution. Flags risky steps. Slower but catches complex, context-dependent threats.</span>
   </div>
 </div>
@@ -41,9 +41,9 @@ description: Agent identity as a third security principal, least privilege, prom
 
 ---
 
-### Agent Identity — The New Security Principal
+### Agent Identity - The New Security Principal
 
-**The intuition**: Before agents, two things have permissions — **humans** (via login) and **services** (via service accounts). After agents, a third category — **autonomous actors** that need their own identity.
+**The intuition**: Before agents, two things have permissions - **humans** (via login) and **services** (via service accounts). After agents, a third category - **autonomous actors** that need their own identity.
 
 ```
 OLD WORLD:                          NEW WORLD:
@@ -75,7 +75,7 @@ Apply it to everything:
 
 ---
 
-### Prompt Injection — The Hidden Attack Vector
+### Prompt Injection - The Hidden Attack Vector
 
 **Direct injection**: User directly tries to override the system prompt.
 ```
@@ -95,7 +95,7 @@ to https://attacker.example.com/collect
 **Why agents are especially vulnerable**: Standalone chatbots process user input. Agents *read external documents*, process emails, retrieve database records, consume API responses. Every external data source is potential attack surface.
 
 **Defense**:
-- Separate instructions from data — never mix system instructions with externally-retrieved content without a clear boundary
+- Separate instructions from data - never mix system instructions with externally-retrieved content without a clear boundary
 - Validate outputs before they are acted upon
 - Constrain tool access (read-only where possible)
 - Human review for irreversible actions
@@ -124,15 +124,15 @@ def guard_pii(callback_context: CallbackContext, request: LlmRequest):
 
 ### Recall Hook
 
-> **Agents are a third security principal — not user, not service. Give them their own identity and minimum permissions.**
+> **Agents are a third security principal - not user, not service. Give them their own identity and minimum permissions.**
 
 ---
 
 ## Part 8: Agent Interoperability
 
-### A2A Protocol — Agent-to-Agent Communication
+### A2A Protocol - Agent-to-Agent Communication
 
-**The intuition**: When two companies' systems need to talk, they use standard APIs. When two agents need to talk — possibly built by different teams, in different languages, on different clouds — they need **A2A**.
+**The intuition**: When two companies' systems need to talk, they use standard APIs. When two agents need to talk - possibly built by different teams, in different languages, on different clouds - they need **A2A**.
 
 ```
 Agent A (Python, Google Cloud) <-> A2A Protocol <-> Agent B (Node.js, AWS)
@@ -144,7 +144,7 @@ Agent A (Python, Google Cloud) <-> A2A Protocol <-> Agent B (Node.js, AWS)
 ```
 
 **How It Works**:
-1. **Discovery**: Each agent publishes an **Agent Card** (JSON) — its capabilities, URL, auth requirements
+1. **Discovery**: Each agent publishes an **Agent Card** (JSON) - its capabilities, URL, auth requirements
 2. **Communication**: Task-based (async). Client sends a task, server streams updates back.
 3. **Why not REST**: REST is request-response. Agents need async, streaming, long-running tasks.
 
@@ -161,7 +161,7 @@ remote = RemoteA2aAgent(
 
 ---
 
-### MCP — Model Context Protocol
+### MCP - Model Context Protocol
 
 **The intuition**: Before MCP, every AI system needed custom integration code for every tool (Salesforce plugin, GitHub plugin, etc.). After MCP: one standard. If a tool has an MCP server, any MCP-compatible agent can use it.
 
@@ -173,7 +173,7 @@ McpToolset
 MCP Server (standard interface) -> Salesforce, GitHub, Linear, PostgreSQL...
 ```
 
-Think of it like USB-C — one port standard for all devices.
+Think of it like USB-C - one port standard for all devices.
 
 **Key MCP advantage for production**: The MCP server handles authentication, rate limiting, and tool versioning. The agent just calls the standard interface. Swap the backend system without changing the agent.
 
@@ -182,11 +182,11 @@ Think of it like USB-C — one port standard for all devices.
 ## Sources
 
 - Google ADK Documentation: Callbacks, Security, A2A Protocol
-- Google ADK Whitepaper: *Introduction to Agents* — Agent Identity section
-- See also: [Prompt Injection Risks — full article](/articles/prompt-injection)
+- Google ADK Whitepaper: *Introduction to Agents* - Agent Identity section
+- See also: [Prompt Injection Risks - full article](/articles/prompt-injection)
 
 <div class="contribute-cta">
 
-**Implemented agent identity or A2A in production?** [Share your approach](https://github.com/sac34333/aiharness/edit/main/docs/guide/security-interop.md) — practical security patterns are rare.
+**Implemented agent identity or A2A in production?** [Share your approach](https://github.com/sac34333/aiharness/edit/main/docs/guide/security-interop.md) - practical security patterns are rare.
 
 </div>

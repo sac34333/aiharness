@@ -1,11 +1,11 @@
 ---
-title: Caching — The Economics of AI at Scale
+title: Caching - The Economics of AI at Scale
 description: The four caching layers that make production AI systems economically viable. Overview of KV Cache, Prompt Caching, and Semantic Caching.
 ---
 
-# PART 6 — Caching: The Economics of AI at Scale
+# PART 6 - Caching: The Economics of AI at Scale
 
-> Caching is not a performance trick — it is what makes production AI systems economically viable.
+> Caching is not a performance trick - it is what makes production AI systems economically viable.
 
 ---
 
@@ -26,7 +26,7 @@ Every production AI request passes through up to four caching layers:
   <div class="layer-num">2</div>
   <div class="layer-content">
     <strong>Exact Prompt Cache (Redis / API-level)</strong>
-    <span>Byte-exact prefix match. ~10% of input token price on hit. Free via Claude/Gemini API — just structure your prompt right.</span>
+    <span>Byte-exact prefix match. ~10% of input token price on hit. Free via Claude/Gemini API - just structure your prompt right.</span>
   </div>
 </div>
 <div class="layer-miss">↓ cache miss</div>
@@ -51,7 +51,7 @@ Every production AI request passes through up to four caching layers:
 
 ## Why This Matters
 
-> "Training made the headlines. Inference pays the power bill." — NetApp/HPCWire 2026
+> "Training made the headlines. Inference pays the power bill." - NetApp/HPCWire 2026
 
 Each layer cuts cost at a different level:
 - **KV Cache** (Layer 4): GPU compute you did not pay for twice
@@ -65,7 +65,7 @@ Each layer cuts cost at a different level:
 
 | Your situation | Start here |
 |---|---|
-| Single inference server, running vLLM | Layer 4 (KV) — it's automatic |
+| Single inference server, running vLLM | Layer 4 (KV) - it's automatic |
 | Multiple inference nodes behind a load balancer | Layer 4 with LMCache |
 | Long system prompts sent on every request (Claude/Gemini) | Layer 2 (Prompt caching) |
 | FAQ-style queries with many users asking similar questions | Layer 1 (Semantic cache) |
@@ -74,18 +74,18 @@ Each layer cuts cost at a different level:
 
 ## The Full Guide
 
-- [KV Cache — GPU-Level Inference Caching](/guide/kv-cache)
-- [Prompt Caching — Provider-Level Caching (Claude + Gemini)](/guide/prompt-caching)
-- [Semantic Caching — Meaning-Level Cache + LiteLLM Stack](/guide/semantic-caching)
+- [KV Cache - GPU-Level Inference Caching](/guide/kv-cache)
+- [Prompt Caching - Provider-Level Caching (Claude + Gemini)](/guide/prompt-caching)
+- [Semantic Caching - Meaning-Level Cache + LiteLLM Stack](/guide/semantic-caching)
 
 ---
 
 ## Sources
 
-- *Training made the headlines. Inference pays the power bill.* — NetApp/HPCWire 2026
+- *Training made the headlines. Inference pays the power bill.* - NetApp/HPCWire 2026
 
 <div class="contribute-cta">
 
-**Seeing caching numbers from production?** [Add them here](https://github.com/sac34333/aiharness/edit/main/docs/guide/caching-overview.md) — real cost data is rare and valuable.
+**Seeing caching numbers from production?** [Add them here](https://github.com/sac34333/aiharness/edit/main/docs/guide/caching-overview.md) - real cost data is rare and valuable.
 
 </div>

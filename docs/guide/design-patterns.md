@@ -3,7 +3,7 @@ title: Multi-Agent Design Patterns
 description: Sequential, Parallel, Loop, Coordinator, Swarm, ReAct, Human-in-the-Loop. When to use which pattern, with Google ADK code examples.
 ---
 
-# PART 3 — Multi-Agent Design Patterns
+# PART 3 - Multi-Agent Design Patterns
 
 ---
 
@@ -42,16 +42,16 @@ HITL         -->  Human approval gates at critical decision points.
 ## In Google ADK
 
 ```python
-# Sequential — runs agents in order
+# Sequential - runs agents in order
 SequentialAgent(sub_agents=[ResearchAgent, DraftAgent, ReviewAgent])
 
-# Parallel — runs agents simultaneously
+# Parallel - runs agents simultaneously
 ParallelAgent(sub_agents=[Source1Agent, Source2Agent, Source3Agent])
 
-# Loop — runs until condition met
+# Loop - runs until condition met
 LoopAgent(sub_agent=RefineAgent, max_iterations=5)
 
-# Dynamic routing — LLM decides next agent
+# Dynamic routing - LLM decides next agent
 RouterAgent(sub_agents=[BillingAgent, SupportAgent, SalesAgent])
 ```
 
@@ -73,7 +73,7 @@ Each agent's output becomes the next agent's input. State flows through `session
 
 All sub-agents run simultaneously. Results are merged into session state.
 
-**When**: Gathering data from independent sources (competitor analysis, multi-source research). All inputs are independent — no agent needs another's output.
+**When**: Gathering data from independent sources (competitor analysis, multi-source research). All inputs are independent - no agent needs another's output.
 
 **Cost**: Total latency = latency of the *slowest* agent (not the sum). Major win for data-gathering steps.
 
@@ -111,7 +111,7 @@ The agent pauses at a defined checkpoint and waits for a human to approve before
 
 ## Recall Hook
 
-> **Assembly line → Parallel teams → Quality loop → Manager → Peer network** — match the pattern to the workflow shape.
+> **Assembly line → Parallel teams → Quality loop → Manager → Peer network** - match the pattern to the workflow shape.
 
 ---
 
@@ -122,6 +122,6 @@ The agent pauses at a defined checkpoint and waits for a human to approve before
 
 <div class="contribute-cta">
 
-**Have a pattern that is not listed here?** [Add it](https://github.com/sac34333/aiharness/edit/main/docs/guide/design-patterns.md) — production-validated patterns only.
+**Have a pattern that is not listed here?** [Add it](https://github.com/sac34333/aiharness/edit/main/docs/guide/design-patterns.md) - production-validated patterns only.
 
 </div>

@@ -3,11 +3,11 @@ title: What Is an AI Agent?
 description: From LLM autocomplete to autonomous actors. The shift from predictor to agent, the anatomy of an agent system, and the Think→Act→Observe loop.
 ---
 
-# PART 1 — What Is an AI Agent?
+# PART 1 - What Is an AI Agent?
 
 > Every section follows the same 4-part structure: **The Intuition** → **The Technical Reality** → **The Production Trap** → **The Recall Hook**
 
-> **Reference note**: Several examples in this guide use [Google ADK](https://adk.dev/) — an open-source agent development framework — to illustrate production patterns. The principles apply across frameworks.
+> **Reference note**: Several examples in this guide use [Google ADK](https://adk.dev/) - an open-source agent development framework - to illustrate production patterns. The principles apply across frameworks.
 
 ---
 
@@ -17,7 +17,7 @@ description: From LLM autocomplete to autonomous actors. The shift from predicto
 
 Old AI = a **very smart autocomplete**. You ask, it predicts. It has no awareness of the world, no plan, no actions. It's a parrot.
 
-An Agent = a **junior employee** you give a goal to. They don't need you to tell them every step. They reason, use tools, check results, and adjust — until the goal is done.
+An Agent = a **junior employee** you give a goal to. They don't need you to tell them every step. They reason, use tools, check results, and adjust - until the goal is done.
 
 > The shift is from *"finish my sentence"* to *"go do the job."*
 
@@ -76,9 +76,9 @@ People think "agent" = "just add a prompt." It's not. An agent is a **complete a
 - **Agent Ops rule**: models are superseded every 6 months. You need a CI/CD pipeline to swap brains without architectural overhaul.
 
 **TOOLS (The Hands)**
-- *Retrieving*: RAG (docs), NL2SQL (databases) — grounds responses in facts, kills hallucinations
+- *Retrieving*: RAG (docs), NL2SQL (databases) - grounds responses in facts, kills hallucinations
 - *Executing*: Wrapped APIs (send email, update CRM), code execution in sandboxes
-- *Human-in-the-Loop*: `ask_for_confirmation()` — agent pauses, human approves, then resumes
+- *Human-in-the-Loop*: `ask_for_confirmation()` - agent pauses, human approves, then resumes
 - Tools are exposed via **Function Calling**. Standards: OpenAPI spec, MCP protocol.
 - **Native tools**: Gemini has Google Search built-in as a native tool (baked into the LLM call itself).
 
@@ -88,7 +88,7 @@ People think "agent" = "just add a prompt." It's not. An agent is a **complete a
 - Manages *memory*: what the agent knows right now (short-term) vs. what it should remember across sessions (long-term)
 - Design choice: No-code builders (fast, limited) vs. code-first frameworks like **ADK** (full control, production-grade)
 
-**CoT vs ReAct — the two reasoning modes:**
+**CoT vs ReAct - the two reasoning modes:**
 
 | | Chain-of-Thought (CoT) | ReAct |
 |---|---|---|
@@ -96,15 +96,15 @@ People think "agent" = "just add a prompt." It's not. An agent is a **complete a
 | **Best for** | Logic, planning, static tasks | Live data, real-world actions |
 | **Example** | Drafting a plan, solving a puzzle | Booking a flight, checking a stock price |
 
-> Modern agents use both — CoT for internal reasoning, ReAct when external actions are needed.
+> Modern agents use both - CoT for internal reasoning, ReAct when external actions are needed.
 
 **DEPLOYMENT (The Body)**
-- Not just "put it on a server" — monitoring, logging, rate limiting, auth
+- Not just "put it on a server" - monitoring, logging, rate limiting, auth
 - Agents talk to users via GUI or to **other agents via A2A protocol**
 
 ### Recall Hook
 
-> **Brain · Hands · Nervous System · Body** — model, tools, orchestration, deployment.
+> **Brain · Hands · Nervous System · Body** - model, tools, orchestration, deployment.
 
 ---
 
@@ -117,7 +117,7 @@ Imagine a detective:
 2. **Scans** available evidence
 3. **Thinks** through the strategy
 4. **Acts** (interviews a suspect, checks records)
-5. **Observes** the result — updates their mental model
+5. **Observes** the result - updates their mental model
 6. Loops until the case is solved
 
 That is exactly the agent loop.
@@ -125,17 +125,17 @@ That is exactly the agent loop.
 ### The Technical Reality
 
 <div class="flow-diagram">
-<div class="flow-step">🎯 <strong>1. MISSION</strong> — User goal arrives</div>
+<div class="flow-step">🎯 <strong>1. MISSION</strong> - User goal arrives</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">🔍 <strong>2. SCAN</strong> — Load context + memory</div>
+<div class="flow-step">🔍 <strong>2. SCAN</strong> - Load context + memory</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">🧠 <strong>3. THINK</strong> — LLM reasons, makes plan</div>
+<div class="flow-step">🧠 <strong>3. THINK</strong> - LLM reasons, makes plan</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">⚡ <strong>4. ACT</strong> — Call a tool / API</div>
+<div class="flow-step">⚡ <strong>4. ACT</strong> - Call a tool / API</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">👁️ <strong>5. OBSERVE</strong> — Get result, update state → <em>loop back to THINK until done</em></div>
+<div class="flow-step">👁️ <strong>5. OBSERVE</strong> - Get result, update state → <em>loop back to THINK until done</em></div>
 <div class="flow-arrow"></div>
-<div class="flow-step">✅ <strong>6. REPORT</strong> — Final answer to user</div>
+<div class="flow-step">✅ <strong>6. REPORT</strong> - Final answer to user</div>
 </div>
 
 The orchestration layer manages this loop. Each cycle:
@@ -151,7 +151,7 @@ Loops can go infinite. Always set `max_llm_calls`. Also: the agent think step co
 
 ### Recall Hook
 
-> **Mission → Scan → Think → Act → Observe → Loop** — the detective cycle.
+> **Mission → Scan → Think → Act → Observe → Loop** - the detective cycle.
 
 ---
 
@@ -162,6 +162,6 @@ Loops can go infinite. Always set `max_llm_calls`. Also: the agent think step co
 
 <div class="contribute-cta">
 
-**See something wrong or missing?** [Edit this page on GitHub](https://github.com/sac34333/aiharness/edit/main/docs/guide/what-is-agent.md) — reviewed before publishing.
+**See something wrong or missing?** [Edit this page on GitHub](https://github.com/sac34333/aiharness/edit/main/docs/guide/what-is-agent.md) - reviewed before publishing.
 
 </div>

@@ -1,9 +1,9 @@
 ---
-title: Agent Ops — Running AI in Production
+title: Agent Ops - Running AI in Production
 description: Why traditional DevOps fails for agents, eval datasets, LLM-as-judge, CI/CD for AI, OpenTelemetry tracing, and the complete production architecture.
 ---
 
-# PART 9 — Agent Ops: Production Lifecycle
+# PART 9 - Agent Ops: Production Lifecycle
 
 > Agents in production are not static software. They are living systems that need continuous management.
 
@@ -16,7 +16,7 @@ Traditional software test:  assert output == expected_output  PASS/FAIL
 Agent test:                 Is this response "good"?          depends...
 ```
 
-Agents are **stochastic** — same input, different output on different runs. You cannot unit-test them like a pure function.
+Agents are **stochastic** - same input, different output on different runs. You cannot unit-test them like a pure function.
 
 ---
 
@@ -33,7 +33,7 @@ Agents are **stochastic** — same input, different output on different runs. Yo
 - Sample from real production interactions
 - Cover the full range of use cases + edge cases
 - Domain expert review before using as ground truth
-- Treat the eval dataset as your most important asset — it is the ground truth for all decisions
+- Treat the eval dataset as your most important asset - it is the ground truth for all decisions
 
 ### 3. Use an LLM-as-Judge
 
@@ -172,12 +172,12 @@ Code change / New model / Prompt update
 
 ## Sources
 
-- Google ADK Whitepaper: *Introduction to Agents* — Agent Ops section
+- Google ADK Whitepaper: *Introduction to Agents* - Agent Ops section
 - Google ADK Documentation: Evaluation, Tracing
 - LangFuse: [langfuse.com](https://langfuse.com)
 
 <div class="contribute-cta">
 
-**Have an eval strategy that actually works in production?** [Share it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/agent-ops.md) — specific frameworks and metrics welcome.
+**Have an eval strategy that actually works in production?** [Share it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/agent-ops.md) - specific frameworks and metrics welcome.
 
 </div>

@@ -3,9 +3,9 @@ title: Developer Mindset for AI Systems
 description: The mental model shift required to build AI systems. From deterministic bricklayer to probabilistic director. Prompts as code. Evals as tests.
 ---
 
-# PART 10 — The Developer Mindset Shift
+# PART 10 - The Developer Mindset Shift
 
-> From the Google ADK whitepaper — the most important mental model.
+> From the Google ADK whitepaper - the most important mental model.
 
 ---
 
@@ -52,7 +52,7 @@ A prompt change is a behaviour change. Merge it like one.
 ## Comprehensive Evaluations Outweigh the Prompt
 
 > "The caveat: Comprehensive evaluations outweigh the prompt. You can't just write a good prompt and ship. You must measure, evaluate, and iterate on agent behavior systematically."
-> — Google ADK Whitepaper
+> - Google ADK Whitepaper
 
 A good prompt with no evals is a guess. A mediocre prompt with rigorous evals is a system you can improve.
 
@@ -87,11 +87,11 @@ A mature AI engineering team:
 
 ## Sources
 
-- Google ADK Whitepaper: *Introduction to Agents* — The Director vs. Bricklayer analogy
-- See also: [Agent Ops — Evals, CI/CD, Production](/guide/agent-ops)
+- Google ADK Whitepaper: *Introduction to Agents* - The Director vs. Bricklayer analogy
+- See also: [Agent Ops - Evals, CI/CD, Production](/guide/agent-ops)
 
 <div class="contribute-cta">
 
-**What mental model shift made the biggest difference for your team?** [Add it to this page](https://github.com/sac34333/aiharness/edit/main/docs/guide/developer-mindset.md) — reviewed before publishing.
+**What mental model shift made the biggest difference for your team?** [Add it to this page](https://github.com/sac34333/aiharness/edit/main/docs/guide/developer-mindset.md) - reviewed before publishing.
 
 </div>

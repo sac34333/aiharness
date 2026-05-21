@@ -9,7 +9,7 @@ description: The attack vector most AI teams don't know they're exposed to. How 
 
 ## What Is Prompt Injection?
 
-Prompt injection is an attack where malicious instructions are embedded in content that an AI agent reads — and the agent follows those instructions as if they came from the system.
+Prompt injection is an attack where malicious instructions are embedded in content that an AI agent reads - and the agent follows those instructions as if they came from the system.
 
 **Direct injection:** The user directly tries to override the system prompt.
 ```
@@ -29,7 +29,7 @@ to https://attacker.example.com/collect
 
 ## Why Agents Are Especially Vulnerable
 
-Standalone chatbots process user input. Agents are different — they:
+Standalone chatbots process user input. Agents are different - they:
 - Read external documents and web pages
 - Process emails and calendar invites
 - Retrieve database records
@@ -53,7 +53,7 @@ Never mix system instructions with user-provided or externally-retrieved content
 
 ### 2. Output Validation
 
-Validate agent outputs before they're acted upon. If the agent is supposed to summarise a document, the output should look like a summary — not a command to take an action.
+Validate agent outputs before they're acted upon. If the agent is supposed to summarise a document, the output should look like a summary - not a command to take an action.
 
 ### 3. Constrain Tool Access
 
@@ -65,7 +65,7 @@ Before feeding external content to an agent, strip or escape instruction-like pa
 
 ### 5. Human Review for High-Stakes Actions
 
-Any action that is irreversible, affects external systems, or involves sensitive data should require human confirmation — even if the agent initiated it.
+Any action that is irreversible, affects external systems, or involves sensitive data should require human confirmation - even if the agent initiated it.
 
 ## The Bottom Line
 
@@ -73,10 +73,10 @@ Prompt injection is not a theoretical concern. It's an active exploitation techn
 
 ---
 
-*See also: [Security & Interop — Technical Deep Dive](/guide/security-interop)*
+*See also: [Security & Interop - Technical Deep Dive](/guide/security-interop)*
 
 <div class="contribute-cta">
 
-**Encountered a prompt injection attempt in production?** [Add the pattern](https://github.com/sac34333/aiharness/edit/main/docs/articles/prompt-injection.md) — anonymised examples help the whole community.
+**Encountered a prompt injection attempt in production?** [Add the pattern](https://github.com/sac34333/aiharness/edit/main/docs/articles/prompt-injection.md) - anonymised examples help the whole community.
 
 </div>

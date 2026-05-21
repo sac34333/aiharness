@@ -1,9 +1,9 @@
 ---
-title: KV Cache — GPU-Level Inference Caching
+title: KV Cache - GPU-Level Inference Caching
 description: How key-value caching works inside transformers, the memory budget problem, vLLM paged attention, multi-node caching with LMCache, and NVIDIA unified memory.
 ---
 
-# Part 6a — KV Cache: GPU-Level Inference Caching
+# Part 6a - KV Cache: GPU-Level Inference Caching
 
 > Sources: NetApp Engineering Blog (Mar 2026) · NVIDIA Developer Blog (Sep 2025) · HPCWire (May 2026)
 
@@ -11,7 +11,7 @@ description: How key-value caching works inside transformers, the memory budget 
 
 ## The Intuition
 
-Imagine you are answering questions about a 500-page book. Without a cache, you re-read the entire book from page 1 every time someone asks a new question. That is what an LLM does without KV cache — it recomputes attention over the *entire* context on every single new token it generates.
+Imagine you are answering questions about a 500-page book. Without a cache, you re-read the entire book from page 1 every time someone asks a new question. That is what an LLM does without KV cache - it recomputes attention over the *entire* context on every single new token it generates.
 
 ---
 
@@ -51,7 +51,7 @@ For each new token, the model needs K and V tensors for all previous tokens. Wit
 
 ---
 
-## KV Cache at Scale — The Memory Budget Problem
+## KV Cache at Scale - The Memory Budget Problem
 
 **Real numbers** (from NVIDIA blog): Llama 3 70B with a 128k token context window for a *single user* consumes ~40 GB of KV cache. At batch size 10 users → 400 GB. That is more than most GPUs have.
 
@@ -69,13 +69,13 @@ KV CACHE FIXED MEMORY POOL
 
 **vLLM's Paged KV Cache**: Borrowed from OS virtual memory. KV tensors stored in fixed-size pages instead of contiguous blocks.
 
-Key win: **Shared Prefix Pages** — 1000 users sharing the same RAG context → stored *once* as shared prefix pages → massive memory efficiency.
+Key win: **Shared Prefix Pages** - 1000 users sharing the same RAG context → stored *once* as shared prefix pages → massive memory efficiency.
 
 ---
 
 ## The Multi-Node Problem: Where Scale Gets Really Hard
 
-> Source: NetApp — "Engineering Inference: KV Cache, Shared Storage, and the Economics of AI" (2026)
+> Source: NetApp - "Engineering Inference: KV Cache, Shared Storage, and the Economics of AI" (2026)
 
 **Single vLLM node**: clean, automatic prefix reuse, boringly simple.
 
@@ -117,7 +117,7 @@ graph TD
 
 **Critical config**: Use `kv_role: "kv_both"` (not just prefill OR decode). Decode-only caching creates subtle mismatches between what was cached during prefill and what is needed during generation.
 
-**NetApp finding**: Adding the S3 tier shows *virtually no downside* because S3 and CPU tiers operate synergistically — S3 catches overflow from CPU RAM without hurting latency for hot entries.
+**NetApp finding**: Adding the S3 tier shows *virtually no downside* because S3 and CPU tiers operate synergistically - S3 catches overflow from CPU RAM without hurting latency for hot entries.
 
 ---
 
@@ -127,18 +127,18 @@ graph TD
 
 The OOM problem made concrete:
 - Llama 3 70B in FP16 → needs ~140 GB GPU memory. GH200 has 96 GB → OOM error.
-- Solution: **NVLink-C2C** — 900 GB/s interconnect between CPU (480 GB LPDDR) and GPU (96 GB HBM), creating a single unified address space. 7× the bandwidth of PCIe Gen 5.
+- Solution: **NVLink-C2C** - 900 GB/s interconnect between CPU (480 GB LPDDR) and GPU (96 GB HBM), creating a single unified address space. 7× the bandwidth of PCIe Gen 5.
 
 ```python
 import rmm
 import torch
 from rmm.allocators.torch import rmm_torch_allocator
 
-# Enable unified memory — GPU can now transparently spill to CPU RAM
+# Enable unified memory - GPU can now transparently spill to CPU RAM
 rmm.reinitialize(managed_memory=True)
 torch.cuda.memory.change_current_allocator(rmm_torch_allocator)
 
-# Now loads without OOM — hardware handles data movement automatically
+# Now loads without OOM - hardware handles data movement automatically
 pipe = pipeline("text-generation", model="meta-llama/Llama-3.1-70B")
 ```
 
@@ -146,14 +146,14 @@ pipe = pipeline("text-generation", model="meta-llama/Llama-3.1-70B")
 
 ## The Economics Argument
 
-> "Training made the headlines. Inference pays the power bill." — NetApp/HPCWire 2026
+> "Training made the headlines. Inference pays the power bill." - NetApp/HPCWire 2026
 
 KV cache reuse + quantization together change the economics:
 - **Reused KV block** = GPU compute you did not pay for twice
 - **CPU/S3 offload** = memory pressure not pushed onto expensive accelerators
 - **Unified memory** = serve larger models without OOM, without buying more GPUs
 
-The companies that win will not throw the most GPUs at the problem — they will engineer smarter inference paths.
+The companies that win will not throw the most GPUs at the problem - they will engineer smarter inference paths.
 
 ---
 
@@ -165,12 +165,12 @@ The companies that win will not throw the most GPUs at the problem — they will
 
 ## Sources
 
-- [NetApp — Engineering Inference: KV Cache, Shared Storage and the Economics of AI](https://community.netapp.com/t5/Tech-ONTAP-Blogs/Engineering-Inference-KV-Cache-Shared-Storage-and-the-Economics-of-AI/ba-p/466018) (Mar 2026)
-- [NVIDIA — Accelerate LLM Inference and KV Cache Offload with CPU-GPU Memory Sharing](https://developer.nvidia.com/blog/accelerate-large-scale-llm-inference-and-kv-cache-offload-with-cpu-gpu-memory-sharing/) (Sep 2025)
-- [HPCWire — Why the Race to Expand KV Cache is Critical for AI Inference Success](https://www.hpcwire.com/2026/05/11/why-the-race-to-expand-kv-cache-is-critical-for-ai-inference-success/) (May 2026)
+- [NetApp - Engineering Inference: KV Cache, Shared Storage and the Economics of AI](https://community.netapp.com/t5/Tech-ONTAP-Blogs/Engineering-Inference-KV-Cache-Shared-Storage-and-the-Economics-of-AI/ba-p/466018) (Mar 2026)
+- [NVIDIA - Accelerate LLM Inference and KV Cache Offload with CPU-GPU Memory Sharing](https://developer.nvidia.com/blog/accelerate-large-scale-llm-inference-and-kv-cache-offload-with-cpu-gpu-memory-sharing/) (Sep 2025)
+- [HPCWire - Why the Race to Expand KV Cache is Critical for AI Inference Success](https://www.hpcwire.com/2026/05/11/why-the-race-to-expand-kv-cache-is-critical-for-ai-inference-success/) (May 2026)
 
 <div class="contribute-cta">
 
-**Running vLLM or LMCache in production?** [Add your config](https://github.com/sac34333/aiharness/edit/main/docs/guide/kv-cache.md) — specific tuning data is rare and useful.
+**Running vLLM or LMCache in production?** [Add your config](https://github.com/sac34333/aiharness/edit/main/docs/guide/kv-cache.md) - specific tuning data is rare and useful.
 
 </div>

@@ -77,6 +77,6 @@ Define "consequential" for your context. Start conservative. Relax it as trust i
 
 <div class="contribute-cta">
 
-**Have a governance model that works?** [Share the framework](https://github.com/sac34333/aiharness/edit/main/docs/articles/deploy-genai-safely.md) — specific and practical contributions welcome.
+**Have a governance model that works?** [Share the framework](https://github.com/sac34333/aiharness/edit/main/docs/articles/deploy-genai-safely.md) - specific and practical contributions welcome.
 
 </div>

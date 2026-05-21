@@ -1,9 +1,9 @@
 ---
-title: Semantic Caching — Meaning-Level Cache
+title: Semantic Caching - Meaning-Level Cache
 description: How semantic caching works, the context window problem that breaks naive implementations, similarity threshold tuning, and the LiteLLM production stack.
 ---
 
-# Part 6c — Semantic Caching: Meaning-Level Cache
+# Part 6c - Semantic Caching: Meaning-Level Cache
 
 > Sources: [Microsoft Azure Cosmos DB Semantic Cache](https://learn.microsoft.com/en-us/azure/cosmos-db/gen-ai/semantic-cache) · [LiteLLM Proxy Caching](https://docs.litellm.ai/docs/proxy/caching)
 
@@ -41,7 +41,7 @@ New request
 
 ---
 
-## The Context Window Problem — Critical Production Gotcha
+## The Context Window Problem - Critical Production Gotcha
 
 > Source: Microsoft Azure Cosmos DB Docs
 
@@ -85,14 +85,14 @@ This requires trial and error in production:
 
 Semantic caches grow large if not pruned:
 - **TTL**: Set expiry on cached items (stale answers become dangerous over time)
-- **Hit count**: Track how often each item is hit — evict low-hit items, extend TTL of high-hit items
+- **Hit count**: Track how often each item is hit - evict low-hit items, extend TTL of high-hit items
 - **Recency filter**: Serve only the most recently cached version of similar questions
 
 ---
 
-## LiteLLM — Production Caching Stack
+## LiteLLM - Production Caching Stack
 
-LiteLLM provides a gateway-level caching layer across all model providers (OpenAI, Anthropic, Gemini, Azure, etc.) — one config to cache everything.
+LiteLLM provides a gateway-level caching layer across all model providers (OpenAI, Anthropic, Gemini, Azure, etc.) - one config to cache everything.
 
 **Supported cache backends:**
 - In-memory (dev only)
@@ -103,7 +103,7 @@ LiteLLM provides a gateway-level caching layer across all model providers (OpenA
 - S3 / GCS (long-term storage)
 
 ```yaml
-# config.yaml — exact match + semantic cache setup
+# config.yaml - exact match + semantic cache setup
 model_list:
   - model_name: gpt-4o
     litellm_params:
@@ -144,7 +144,7 @@ extra_body={"cache": {"no-store": True}}
 
 **Debug your cache**: `GET /cache/ping` returns health status, Redis version, connection pool info.
 **View cache key in response**: check `x-litellm-cache-key` response header.
-**Shared auth cache across workers**: `enable_redis_auth_cache: true` — prevents each worker pod from making independent DB lookups on key verification.
+**Shared auth cache across workers**: `enable_redis_auth_cache: true` - prevents each worker pod from making independent DB lookups on key verification.
 
 ---
 
@@ -156,7 +156,7 @@ extra_body={"cache": {"no-store": True}}
 | **Best for** | System prompts, tools, documents | FAQ queries, repeated user intents |
 | **Staleness risk** | Very low (exact = always same context) | Medium-high (similar ≠ same context) |
 | **Implementation complexity** | Low (API parameter) | High (vector DB, embedding model, threshold tuning) |
-| **Context window issue** | Not applicable | Critical — must include history in key |
+| **Context window issue** | Not applicable | Critical - must include history in key |
 | **Cold start** | Every new deployment | Warm-up time to build cache |
 
 ---
@@ -181,11 +181,11 @@ Layer 3: LLM Inference (inside: Layer 4 KV Cache)
 
 ## Sources
 
-- [Microsoft Azure Cosmos DB — Introduction to Semantic Cache](https://learn.microsoft.com/en-us/azure/cosmos-db/gen-ai/semantic-cache)
+- [Microsoft Azure Cosmos DB - Introduction to Semantic Cache](https://learn.microsoft.com/en-us/azure/cosmos-db/gen-ai/semantic-cache)
 - [LiteLLM Proxy Caching Docs](https://docs.litellm.ai/docs/proxy/caching)
 
 <div class="contribute-cta">
 
-**Tuned a semantic cache in production?** [Share your threshold and embedding model](https://github.com/sac34333/aiharness/edit/main/docs/guide/semantic-caching.md) — domain-specific data is hard to find.
+**Tuned a semantic cache in production?** [Share your threshold and embedding model](https://github.com/sac34333/aiharness/edit/main/docs/guide/semantic-caching.md) - domain-specific data is hard to find.
 
 </div>

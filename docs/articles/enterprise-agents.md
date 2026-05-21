@@ -41,7 +41,7 @@ None of these problems are solved by better prompt engineering.
 
 Nandan Nilekani's point about talent reskilling is the most underrated risk in enterprise AI. Junior developers learn by doing work that AI now does more efficiently. If you don't redesign the learning path, you break the knowledge transfer chain.
 
-**The fix:** Mandate human review not just for quality control, but as a mechanism to force knowledge retention. Make it explicit that certain decisions require human reasoning — not because AI can't do it, but because the human needs to stay capable of doing it.
+**The fix:** Mandate human review not just for quality control, but as a mechanism to force knowledge retention. Make it explicit that certain decisions require human reasoning - not because AI can't do it, but because the human needs to stay capable of doing it.
 
 ---
 

@@ -1,54 +1,54 @@
 ---
-title: Prompt Caching — Provider-Level Caching
+title: Prompt Caching - Provider-Level Caching
 description: Claude cache_control, Gemini CachedContent, the 5 hard-won lessons from Claude Code, and Gemini's service tiers including Flex at 50% discount.
 ---
 
-# Part 6b — Prompt Caching: Provider-Level Caching
+# Part 6b - Prompt Caching: Provider-Level Caching
 
-> Source: [Claude Code Blog — Prompt Caching is Everything](https://claude.com/blog/lessons-from-building-claude-code-prompt-caching-is-everything) (Apr 30, 2026)
+> Source: [Claude Code Blog - Prompt Caching is Everything](https://claude.com/blog/lessons-from-building-claude-code-prompt-caching-is-everything) (Apr 30, 2026)
 > Source: [Google Gemini API Caching Docs](https://ai.google.dev/gemini-api/docs/caching.md.txt)
 
 ---
 
 ## The Intuition
 
-KV cache is inside the inference server — transparent to you. **Prompt caching** is exposed to *you as a developer* via the API. You structure your prompt so the stable parts are a shared prefix, and every request that matches it pays ~1/10th the input token price.
+KV cache is inside the inference server - transparent to you. **Prompt caching** is exposed to *you as a developer* via the API. You structure your prompt so the stable parts are a shared prefix, and every request that matches it pays ~1/10th the input token price.
 
-> "It is often said in engineering that 'cache rules everything around me', and the same rule holds for agents." — Claude Code team
+> "It is often said in engineering that 'cache rules everything around me', and the same rule holds for agents." - Claude Code team
 
 At Claude Code, prompt cache hit rate is monitored like uptime. They declare **SEVs (incidents)** when it drops too low. A few percentage points of cache miss rate dramatically affects cost and latency.
 
 ---
 
-## The System Prompt Layout — The Core Rule
+## The System Prompt Layout - The Core Rule
 
 <div class="layer-stack">
 <div class="layer">
   <div class="layer-num">1</div>
   <div class="layer-content">
     <strong>BASE SYSTEM INSTRUCTIONS + TOOLS</strong>
-    <span>Globally cached — static, never changes between sessions. Cache hits here.</span>
+    <span>Globally cached - static, never changes between sessions. Cache hits here.</span>
   </div>
 </div>
 <div class="layer">
   <div class="layer-num">2</div>
   <div class="layer-content">
     <strong>CLAUDE.md / Memory / Project context</strong>
-    <span>Cached per project — same within one project, changes project-to-project.</span>
+    <span>Cached per project - same within one project, changes project-to-project.</span>
   </div>
 </div>
 <div class="layer">
   <div class="layer-num">3</div>
   <div class="layer-content">
     <strong>SESSION STATE (env, MCP config, output style)</strong>
-    <span>Cached per session — stable within a conversation.</span>
+    <span>Cached per session - stable within a conversation.</span>
   </div>
 </div>
 <div class="layer layer-miss" style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:8px;padding:1rem 1.25rem;margin-top:0.25rem;">
   <div class="layer-num" style="background:#999;">4</div>
   <div class="layer-content">
     <strong>MESSAGES (user messages, tool results, assistant responses)</strong>
-    <span>Grows each turn — NOT cached. No cache benefit here.</span>
+    <span>Grows each turn - NOT cached. No cache benefit here.</span>
   </div>
 </div>
 </div>
@@ -75,19 +75,19 @@ If information becomes outdated (current time, file state, mode change), inserti
 - Tools are part of the cached prefix. Add/remove a tool mid-conversation → cache invalidated for the *entire conversation*.
 - **Claude Code's solution for Plan Mode**: Instead of swapping tool sets, they keep ALL tools in every request and use `EnterPlanMode` / `ExitPlanMode` as *tools the model calls itself*. Tool definitions never change.
 - **Deferred loading**: For MCP tools, send lightweight stubs with `defer_loading: true`. The full schema loads only when selected. Stable stubs = stable prefix = cache preserved.
-- **Don't switch models mid-session**: Prompt caches are *unique to each model*. Switching from Opus to Haiku at turn 50 means rebuilding the entire cache for Haiku from scratch — more expensive than Opus answering a simple question on a cache hit.
+- **Don't switch models mid-session**: Prompt caches are *unique to each model*. Switching from Opus to Haiku at turn 50 means rebuilding the entire cache for Haiku from scratch - more expensive than Opus answering a simple question on a cache hit.
 
 ### Lesson 4: Fork Operations Must Share the Parent's Prefix
 
 When running a side computation (compaction, summarization), use *identical* system prompt + tools as the parent.
 
 ```
-WRONG — new system prompt = no cache hit = expensive:
+WRONG - new system prompt = no cache hit = expensive:
 POST /messages
   system: "Summarize the following conversation"  <- different prefix, no hit
   messages: [full conversation history]            <- pay full price for all
 
-CORRECT — same prefix = cache hit = cheap:
+CORRECT - same prefix = cache hit = cheap:
 POST /messages
   system: [exact same system prompt as parent]    <- cache hit! 1/10 price
   tools: [exact same tool list as parent]         <- cache hit!
@@ -100,7 +100,7 @@ Set up alerts. Treat drops as incidents. Measure it constantly.
 
 ---
 
-## Compaction — How Claude Code Handles Long Conversations
+## Compaction - How Claude Code Handles Long Conversations
 
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1.5rem 0;">
 <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:8px;padding:1rem;font-size:0.85rem;">
@@ -153,7 +153,7 @@ The forked call uses the exact parent prefix → cache hit → you pay 1/10th pr
 
 ---
 
-## Google Gemini Caching — Implicit vs. Explicit
+## Google Gemini Caching - Implicit vs. Explicit
 
 ### Implicit Caching (Gemini 2.5+, auto-enabled)
 
@@ -215,12 +215,12 @@ print(response.usage_metadata)  # shows cached_token_count
 
 ## Sources
 
-- [Claude Code — Prompt Caching is Everything](https://claude.com/blog/lessons-from-building-claude-code-prompt-caching-is-everything) (Apr 30, 2026)
+- [Claude Code - Prompt Caching is Everything](https://claude.com/blog/lessons-from-building-claude-code-prompt-caching-is-everything) (Apr 30, 2026)
 - [Google Gemini API Caching Docs](https://ai.google.dev/gemini-api/docs/caching.md.txt)
 - [Google Gemini API Optimization & Service Tiers](https://ai.google.dev/gemini-api/docs/optimization.md.txt)
 
 <div class="contribute-cta">
 
-**Have prompt cache hit rate data from production?** [Share it](https://github.com/sac34333/aiharness/edit/main/docs/guide/prompt-caching.md) — real numbers are rare.
+**Have prompt cache hit rate data from production?** [Share it](https://github.com/sac34333/aiharness/edit/main/docs/guide/prompt-caching.md) - real numbers are rare.
 
 </div>

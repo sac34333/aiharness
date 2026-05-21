@@ -1,11 +1,11 @@
 ---
 title: AI Offense Before Defense
-description: "Security leaders should turn offensive AI tools on their own systems before threat actors do. The defenders who move first win — because they have something attackers don't: context."
+description: "Security leaders should turn offensive AI tools on their own systems before threat actors do. The defenders who move first win - because they have something attackers don't: context."
 ---
 
 # AI Offense Before Defense
 
-> The same AI model produces very different results based on the context you feed it. Attackers have less context about you. As defenders, we have a lot. Use it first — or someone else will.
+> The same AI model produces very different results based on the context you feed it. Attackers have less context about you. As defenders, we have a lot. Use it first - or someone else will.
 
 ---
 
@@ -13,11 +13,11 @@ description: "Security leaders should turn offensive AI tools on their own syste
 
 Yinon Costica, co-founder of Wiz, articulated something most security leaders haven't internalised yet:
 
-Wiz is a cloud security platform that maps an organisation's entire IT estate — infra, apps, APIs, data — to find exposure, misconfigurations, and attack paths. Acquired by Google for $32bn, it became the industry's largest cybersecurity purchase and a signal that security infrastructure itself is being rebuilt around AI agents.
+Wiz is a cloud security platform that maps an organisation's entire IT estate - infra, apps, APIs, data - to find exposure, misconfigurations, and attack paths. Acquired by Google for $32bn, it became the industry's largest cybersecurity purchase and a signal that security infrastructure itself is being rebuilt around AI agents.
 
 > "If, as defenders, we take the first movers' advantage and we use the AI against ourselves, with the context we have, we actually stand a chance to win. But we need to act fast."
 
-The logic is simple and powerful. AI models are shaped by context. Attackers have limited context about your environment. Defenders have deep knowledge — network architecture, API surfaces, codebases, access patterns, operational technology assets. That context asymmetry is the defenders' advantage. But it only holds if you exploit it first.
+The logic is simple and powerful. AI models are shaped by context. Attackers have limited context about your environment. Defenders have deep knowledge - network architecture, API surfaces, codebases, access patterns, operational technology assets. That context asymmetry is the defenders' advantage. But it only holds if you exploit it first.
 
 <div class="highlight-box">
 <strong>The principle:</strong> Before threat actors probe your attack surface with AI, do it yourself. You know where the weak points are. You have the context they don't. Use it.
@@ -33,28 +33,28 @@ Wiz has introduced three AI security agents designed to operationalise this exac
 
 <div class="agent-card agent-red">
 <div class="agent-badge">🔍 Red Agent</div>
-<strong>Offensive — Find it first</strong>
+<strong>Offensive - Find it first</strong>
 
 Probes deep into your IT estate. Identifies exposed APIs, end-of-life edge networking, OT assets, and unknown attack surfaces. Runs penetration tests on everything it finds. This is the "use AI against yourself" agent.
 </div>
 
 <div class="agent-card agent-green">
 <div class="agent-badge">🩹 Green Agent</div>
-<strong>Triage — Accelerate the bottleneck</strong>
+<strong>Triage - Accelerate the bottleneck</strong>
 
-Automates what takes human teams ages: vulnerability triage, severity assessment, and prioritisation. The bottleneck in most security workflows isn't detection — it's deciding what matters first.
+Automates what takes human teams ages: vulnerability triage, severity assessment, and prioritisation. The bottleneck in most security workflows isn't detection - it's deciding what matters first.
 </div>
 
 <div class="agent-card agent-blue">
 <div class="agent-badge">🛡️ Blue Agent</div>
-<strong>Investigative — Close the loop</strong>
+<strong>Investigative - Close the loop</strong>
 
 Does the detective work. Correlates signals, traces attack paths, and produces evidence that human analysts would take days to assemble. Cuts the investigation gap between detection and response.
 </div>
 
 </div>
 
-> "These three agents together form a layer that is autonomous and automated. It's not revolutionary in that it aligns closely to how security teams have been working for many years — but now it allows each team to automate their workflows." — Yinon Costica
+> "These three agents together form a layer that is autonomous and automated. It's not revolutionary in that it aligns closely to how security teams have been working for many years - but now it allows each team to automate their workflows." - Yinon Costica
 
 The point is not that agents replace red, green, or blue teams. The point is that defenders can now scale the same offensive techniques against their own systems at a speed and breadth that manual teams cannot match.
 
@@ -65,11 +65,11 @@ The point is not that agents replace red, green, or blue teams. The point is tha
 Costica was candid about the challenge: speed. Attackers are not waiting. The tools to automate offensive security are becoming widely available. The question is whether defenders use them first.
 
 <div class="flow-diagram">
-<div class="flow-step"><strong>Attacker AI</strong> — scans your attack surface, finds exposures, crafts exploits</div>
+<div class="flow-step"><strong>Attacker AI</strong> - scans your attack surface, finds exposures, crafts exploits</div>
 <div class="flow-arrow"></div>
-<div class="flow-step"><strong>Defender AI</strong> — scans the same surface, with full context, finds the same exposures first</div>
+<div class="flow-step"><strong>Defender AI</strong> - scans the same surface, with full context, finds the same exposures first</div>
 <div class="flow-arrow"></div>
-<div class="flow-step"><strong>The delta</strong> — whoever runs this loop first owns the high ground</div>
+<div class="flow-step"><strong>The delta</strong> - whoever runs this loop first owns the high ground</div>
 </div>
 
 The same infrastructure, the same exposures. The difference is who sees them first and what they do about it. Right now, most defenders are not running this loop at all.
@@ -78,14 +78,14 @@ The same infrastructure, the same exposures. The difference is who sees them fir
 
 ## The $32bn Signal: Wiz + Google
 
-Google's $32bn acquisition of Wiz — its largest purchase to date — signals a shift in how the industry thinks about security. The two organisations are building toward a unified security platform that:
+Google's $32bn acquisition of Wiz - its largest purchase to date - signals a shift in how the industry thinks about security. The two organisations are building toward a unified security platform that:
 
 - Retains Wiz's brand and multi-cloud support (AWS, Azure, Oracle Cloud)
 - Integrates Wiz Defend detections with Google Security Operations and Mandiant Threat Defence
 - Adds agent studio support for AWS Agentcore, Azure Copilot Studio, Salesforce Agentforce, and Gemini Enterprise Agent
 - Extends to edge integrations with Apigee, Cloudflare AI Security, and Vercel
 
-The acquisition is not just about tools. It's about velocity. Wiz's agent framework is designed to close the gap between finding a risk and shipping a fix — from detection to code fix to redeployment, automated.
+The acquisition is not just about tools. It's about velocity. Wiz's agent framework is designed to close the gap between finding a risk and shipping a fix - from detection to code fix to redeployment, automated.
 
 ---
 
@@ -118,7 +118,7 @@ This changes security fundamentally. Traditional models protect the perimeter. A
 </div>
 </div>
 
-For telecom operators, this is especially urgent. Agents may span customer care, network operations, IT, partner ecosystems, and multiple regulatory regions — all with different compliance constraints. The old approach doesn't scale to agents that act, not just assist.
+For telecom operators, this is especially urgent. Agents may span customer care, network operations, IT, partner ecosystems, and multiple regulatory regions - all with different compliance constraints. The old approach doesn't scale to agents that act, not just assist.
 
 ---
 
@@ -177,12 +177,12 @@ AI models behave probabilistically. Their outputs vary depending on context, inp
 <div class="layer-num">4</div>
 <div class="layer-content">
 <strong>Evidence replaces trust</strong>
-<span>Confidence comes from adversarial testing that reflects real threat conditions — not from vendor claims</span>
+<span>Confidence comes from adversarial testing that reflects real threat conditions - not from vendor claims</span>
 </div>
 </div>
 </div>
 
-The most promising AI security use cases are those that **augment human decision-making** — triage assistance, pattern recognition at scale, investigative support. Measurable gains, properly constrained, and tested under pressure.
+The most promising AI security use cases are those that **augment human decision-making** - triage assistance, pattern recognition at scale, investigative support. Measurable gains, properly constrained, and tested under pressure.
 
 By contrast, fully autonomous decision-making or broad unsupervised control introduces risk faster than it reduces it.
 
@@ -212,7 +212,7 @@ Tiered autonomy lets organisations move faster while staying in control. Designi
 Run red-team AI against your own attack surface, code, and APIs before threat actors do. You have the context advantage. Use it.
 
 **2. Map which agents can access what, and draw hard lines.**
-Agent identity, fine-grained permissions, and continuous monitoring are now core requirements — not optional add-ons.
+Agent identity, fine-grained permissions, and continuous monitoring are now core requirements - not optional add-ons.
 
 **3. Test your AI security tools adversarially.**
 Don't just test whether they work. Test how they behave when they are stressed, manipulated, or fed inputs outside known conditions. Resilience is demonstrated, not claimed.
@@ -221,13 +221,13 @@ Don't just test whether they work. Test how they behave when they are stressed, 
 Define which agents exist, what they can access, what decisions they can make, and how that behaviour changes over time. Retroactive governance is nearly impossible.
 
 **5. Design tiered autonomy from day one.**
-Not every decision should be autonomous. Define which tier each workflow sits in — routine, elevated, or critical — and build escalation paths accordingly.
+Not every decision should be autonomous. Define which tier each workflow sits in - routine, elevated, or critical - and build escalation paths accordingly.
 
 ---
 
 ## The Bottom Line
 
-AI is being used on both sides of security. The defenders' advantage is context — but it only holds if you exploit it before attackers do.
+AI is being used on both sides of security. The defenders' advantage is context - but it only holds if you exploit it before attackers do.
 
 Confidence in AI-powered security is not assumed. It is earned through adversarial testing, evidence, and proof under pressure. The goal for CISOs is not trust. It is evidence-backed confidence.
 
@@ -237,6 +237,6 @@ Vendors who can demonstrate genuine resilience under adversarial scrutiny will s
 
 <div class="contribute-cta">
 
-**Running adversarial AI tests against your own systems?** [Share what you're learning](https://github.com/sac34333/aiharness/edit/main/docs/articles/ai-offense-before-defense.md) — real deployment experience makes this more useful.
+**Running adversarial AI tests against your own systems?** [Share what you're learning](https://github.com/sac34333/aiharness/edit/main/docs/articles/ai-offense-before-defense.md) - real deployment experience makes this more useful.
 
 </div>

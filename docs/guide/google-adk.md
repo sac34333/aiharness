@@ -1,9 +1,9 @@
 ---
-title: Google ADK — Agent Development Kit Deep Dive
+title: Google ADK - Agent Development Kit Deep Dive
 description: The ADK runtime architecture, event loop, LlmAgent vs WorkflowAgent vs CustomAgent, tools, MCP integration, and callbacks as guardrails.
 ---
 
-# PART 5 — Google ADK Deep Dive
+# PART 5 - Google ADK Deep Dive
 
 ---
 
@@ -20,7 +20,7 @@ Every action is an immutable **Event**: user messages, agent replies, tool calls
 <h4>Compute (Agent Logic)</h4>
 
 - Stateless
-- Can crash — and that's okay
+- Can crash - and that's okay
 - Can scale horizontally
 - Runs the Think→Act→Observe loop
 
@@ -36,8 +36,8 @@ Every action is an immutable **Event**: user messages, agent replies, tool calls
 </div>
 </div>
 
-> **Why this matters**: If a server crashes mid-workflow, ADK resumes from the last saved event. Disciplined separation of concerns — not magic.
-If a server crashes mid-workflow, ADK resumes from the last saved state. This is not magic — it is disciplined separation of concerns.
+> **Why this matters**: If a server crashes mid-workflow, ADK resumes from the last saved event. Disciplined separation of concerns - not magic.
+If a server crashes mid-workflow, ADK resumes from the last saved state. This is not magic - it is disciplined separation of concerns.
 
 ---
 
@@ -70,25 +70,25 @@ graph TD
     T -->|Stream Events| OUT([Response to User])
 ```
 
-### The Event Loop — The Most Critical Concept in ADK
+### The Event Loop - The Most Critical Concept in ADK
 
 <div class="flow-diagram">
-<div class="flow-step">⚙️ <strong>EXECUTE</strong> — Agent runs logic</div>
+<div class="flow-step">⚙️ <strong>EXECUTE</strong> - Agent runs logic</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">📤 <strong>YIELD</strong> — Agent emits an Event and <em>stops running</em></div>
+<div class="flow-step">📤 <strong>YIELD</strong> - Agent emits an Event and <em>stops running</em></div>
 <div class="flow-arrow"></div>
-<div class="flow-step">💾 <strong>PERSIST</strong> — Runner saves state via SessionService (survives crashes here)</div>
+<div class="flow-step">💾 <strong>PERSIST</strong> - Runner saves state via SessionService (survives crashes here)</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">▶️ <strong>RESUME</strong> — Runner restarts the agent with fresh persisted state</div>
+<div class="flow-step">▶️ <strong>RESUME</strong> - Runner restarts the agent with fresh persisted state</div>
 <div class="flow-arrow"></div>
-<div class="flow-step">🔁 <strong>EXECUTE</strong> — Loops until agent returns final answer</div>
+<div class="flow-step">🔁 <strong>EXECUTE</strong> - Loops until agent returns final answer</div>
 </div>
 
-**Why this matters in production**: Step 4 is where state is saved to a database. If the server dies between step 3 and 5, the state is already persisted — you replay from the last event.
+**Why this matters in production**: Step 4 is where state is saved to a database. If the server dies between step 3 and 5, the state is already persisted - you replay from the last event.
 
 ---
 
-## 5.3 Agent Types — Which One to Use
+## 5.3 Agent Types - Which One to Use
 
 ### The Intuition
 
@@ -100,7 +100,7 @@ CustomAgent     = The specialist contractor (anything you can code)
 
 ---
 
-### LlmAgent — The Standard Agent
+### LlmAgent - The Standard Agent
 
 ```python
 agent = LlmAgent(
@@ -110,29 +110,29 @@ agent = LlmAgent(
     output_key="agent_response"  # auto-saves final answer to session.state
 )
 ```
-- Non-deterministic — the LLM decides what to do
+- Non-deterministic - the LLM decides what to do
 - Best for: language tasks, dynamic decisions, tool orchestration
 
 ---
 
-### WorkflowAgents — Deterministic Orchestrators
+### WorkflowAgents - Deterministic Orchestrators
 
 ```python
-# Assembly line — order matters
+# Assembly line - order matters
 pipeline = SequentialAgent(sub_agents=[
     ResearchAgent,   # runs first
     DraftAgent,      # runs second, gets research in state
     ReviewAgent      # runs third, gets draft in state
 ])
 
-# Parallel — gather data simultaneously
+# Parallel - gather data simultaneously
 fetcher = ParallelAgent(sub_agents=[
     DataSourceAgent1,
     DataSourceAgent2,
     DataSourceAgent3
 ])
 
-# Quality loop — iterate until condition
+# Quality loop - iterate until condition
 refiner = LoopAgent(
     sub_agent=CodeRefineAgent,
     max_iterations=5
@@ -141,12 +141,12 @@ refiner = LoopAgent(
 
 ---
 
-### CustomAgent — Full Control
+### CustomAgent - Full Control
 
 ```python
 class MyOrchestrator(BaseAgent):
     async def _run_async_impl(self, ctx: InvocationContext):
-        # Arbitrary Python logic — conditionals, loops, anything
+        # Arbitrary Python logic - conditionals, loops, anything
         if ctx.session.state.get('user_tier') == 'enterprise':
             async for event in self.enterprise_agent.run_async(ctx):
                 yield event
@@ -161,7 +161,7 @@ Use when: your routing logic is too complex for a RouterAgent, or you need to mi
 
 ## 5.4 Tools and MCP
 
-### Function Tools — The Standard
+### Function Tools - The Standard
 
 ```python
 def lookup_order(order_id: str, tool_context: ToolContext) -> dict:
@@ -179,12 +179,12 @@ def lookup_order(order_id: str, tool_context: ToolContext) -> dict:
 ```
 
 ::: warning Critical
-The docstring is not documentation for you — it is the tool specification for the LLM. Write it for the model: *when to use this*, *what each param means*, *what format to expect*.
+The docstring is not documentation for you - it is the tool specification for the LLM. Write it for the model: *when to use this*, *what each param means*, *what format to expect*.
 :::
 
 ---
 
-### MCP (Model Context Protocol) — Enterprise Integration
+### MCP (Model Context Protocol) - Enterprise Integration
 
 ```
 Your Agent
@@ -197,15 +197,15 @@ McpToolset <-- connects to --> MCP Server (e.g., "Salesforce MCP Server")
 
 MCP is how you connect to enterprise systems (Salesforce, ServiceNow, SAP) without writing custom tool code for each. The MCP server exposes them; ADK discovers and uses them automatically.
 
-Think of it like USB-C — one port standard for all devices.
+Think of it like USB-C - one port standard for all devices.
 
 ---
 
-## 5.5 Callbacks — Your Guardrails
+## 5.5 Callbacks - Your Guardrails
 
 ### The Intuition
 
-Callbacks are **security checkpoints** at key execution stages. Like a TSA checkpoint — they run before/after critical operations and can *block* execution.
+Callbacks are **security checkpoints** at key execution stages. Like a TSA checkpoint - they run before/after critical operations and can *block* execution.
 
 ```
 before_agent_callback   -> Agent is about to start. Check user permissions?
@@ -247,6 +247,6 @@ def guard_pii(callback_context: CallbackContext, request: LlmRequest):
 
 <div class="contribute-cta">
 
-**Have a production ADK pattern worth sharing?** [Add it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/google-adk.md) — reviewed before publishing.
+**Have a production ADK pattern worth sharing?** [Add it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/google-adk.md) - reviewed before publishing.
 
 </div>

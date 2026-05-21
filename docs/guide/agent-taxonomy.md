@@ -1,17 +1,17 @@
 ---
-title: Agent Taxonomy — Levels 1 to 5
+title: Agent Taxonomy - Levels 1 to 5
 description: The five levels of AI agents from basic reasoning to self-evolving systems. Pick the right level before writing a line of code.
 ---
 
-# PART 2 — Taxonomy: What Kind of Agent Are You Building?
+# PART 2 - Taxonomy: What Kind of Agent Are You Building?
 
 ---
 
-## The 5 Levels — From Brain to Self-Evolving System
+## The 5 Levels - From Brain to Self-Evolving System
 
 ### The Intuition
 
-Think of hiring: you wouldn't hire a contractor without knowing the job scope. Same here — pick the right level of agent for the complexity of the task.
+Think of hiring: you wouldn't hire a contractor without knowing the job scope. Same here - pick the right level of agent for the complexity of the task.
 
 ```mermaid
 graph LR
@@ -46,14 +46,14 @@ graph LR
 - **What**: LLM + external tools (Search, Calculator, DB queries)
 - **What it can do**: Answer about real-time events, current data
 - **Production use**: Customer support agent that can look up order status
-- **Technique**: Function calling — the LLM decides which tool to use, ADK executes it
+- **Technique**: Function calling - the LLM decides which tool to use, ADK executes it
 
 ---
 
 ### Level 2: The Strategic Problem-Solver
 
 - **What**: LLM + tools + **planning** (multi-step, uses output of step N as input to step N+1)
-- **The Key Concept**: **Context Engineering** — the output of one step is shaped into precise input for the next
+- **The Key Concept**: **Context Engineering** - the output of one step is shaped into precise input for the next
 - **Production example (coffee shop case)**:
 
 ```
@@ -69,7 +69,7 @@ Step 2: search_tool("good coffee in Millbrae")  <-- uses output from step 1
 
 - **What**: A "Project Manager" agent + specialized sub-agents
 - **Why not one giant agent**: Specialization. Each agent has a focused system prompt, relevant tools, and smaller context → cheaper, faster, more reliable
-- **Production example — Product Launch**:
+- **Production example - Product Launch**:
 
 ```
 OrchestratorAgent --> MarketingAgent   (writes press release)
@@ -96,14 +96,14 @@ Understanding how agents track context across a conversation is foundational:
 | Concept | What it is |
 |---|---|
 | **Session** | The current conversation thread |
-| **State** (`session.state`) | Key-value data within the current session — the agent's scratchpad |
-| **Memory** | Searchable, cross-session information — persists beyond a single conversation |
+| **State** (`session.state`) | Key-value data within the current session - the agent's scratchpad |
+| **Memory** | Searchable, cross-session information - persists beyond a single conversation |
 
 ADK provides separate service implementations for each: `SessionService` manages session objects, `MemoryService` manages long-term memory.
 
 ### State: The Session's Scratchpad
 
-`session.state` is a dictionary of key-value pairs the agent reads and writes during a conversation. It holds everything the agent needs to recall to make the current conversation effective — user preferences set earlier, intermediate results, decisions already made.
+`session.state` is a dictionary of key-value pairs the agent reads and writes during a conversation. It holds everything the agent needs to recall to make the current conversation effective - user preferences set earlier, intermediate results, decisions already made.
 
 ```python
 # Writing to state
@@ -114,7 +114,7 @@ session.state["preferred_currency"] = "EUR"
 name = session.state.get("user_name")
 ```
 
-State is scoped to the session. When the session ends, state is gone — unless explicitly promoted to long-term Memory.
+State is scoped to the session. When the session ends, state is gone - unless explicitly promoted to long-term Memory.
 
 ---
 
@@ -126,7 +126,7 @@ The **Agent2Agent (A2A) Protocol** is an open standard for communication between
 - **Manage collaborative tasks** asynchronously across agent boundaries
 - **Securely exchange information** without exposing internal state, memory, or tools
 
-A2A is the external communication layer — where `session.state` handles intra-agent state within a single runtime, A2A handles inter-agent coordination across separate systems.
+A2A is the external communication layer - where `session.state` handles intra-agent state within a single runtime, A2A handles inter-agent coordination across separate systems.
 
 ---
 
@@ -142,7 +142,7 @@ Start at the lowest level that solves the problem. Add complexity only when you 
 
 ## Recall Hook
 
-> **Encyclopedia → Expert → Strategist → Manager → Self-Growing Org** — pick your level before you write a line of code.
+> **Encyclopedia → Expert → Strategist → Manager → Self-Growing Org** - pick your level before you write a line of code.
 
 ---
 
@@ -154,6 +154,6 @@ Start at the lowest level that solves the problem. Add complexity only when you 
 
 <div class="contribute-cta">
 
-**Know a production example of each level?** [Add it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/agent-taxonomy.md) — real examples make this more useful.
+**Know a production example of each level?** [Add it here](https://github.com/sac34333/aiharness/edit/main/docs/guide/agent-taxonomy.md) - real examples make this more useful.
 
 </div>
