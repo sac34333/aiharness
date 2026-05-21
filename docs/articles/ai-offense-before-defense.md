@@ -11,7 +11,7 @@ description: Security leaders should turn offensive AI tools on their own system
 
 ## The Defenders' Advantage No One Talks About
 
-Yinon Costica, co-founder of Wiz (now part of Google), said something at Google Cloud Next 2026 that most security leaders haven't internalised yet:
+Yinon Costica, co-founder of Wiz (now part of Google), articulated something most security leaders haven't internalised yet:
 
 > "If, as defenders, we take the first movers' advantage and we use the AI against ourselves, with the context we have, we actually stand a chance to win. But we need to act fast."
 
@@ -25,7 +25,7 @@ The logic is simple and powerful. AI models are shaped by context. Attackers hav
 
 ## Wiz's Answer: Red, Green, Blue
 
-At Google Cloud Next, Wiz introduced three AI security agents designed to operationalise this exact philosophy:
+Wiz has introduced three AI security agents designed to operationalise this exact philosophy:
 
 <div class="agent-grid">
 
@@ -76,7 +76,7 @@ The same infrastructure, the same exposures. The difference is who sees them fir
 
 ## The $32bn Signal: Wiz + Google
 
-A little over a month before Google Cloud Next, Wiz's $32bn acquisition by Google closed — Google's largest purchase to date. The two organisations are building toward a unified security platform that:
+Google's $32bn acquisition of Wiz — its largest purchase to date — signals a shift in how the industry thinks about security. The two organisations are building toward a unified security platform that:
 
 - Retains Wiz's brand and multi-cloud support (AWS, Azure, Oracle Cloud)
 - Integrates Wiz Defend detections with Google Security Operations and Mandiant Threat Defence
@@ -89,7 +89,7 @@ The acquisition is not just about tools. It's about velocity. Wiz's agent framew
 
 ## Beyond the Perimeter: Agents Change Security
 
-Google Cloud Next 2026 made one shift unmistakable: AI agents are no longer experiments. They are being positioned as ecosystems that can reason, act, and run across real enterprise workflows.
+AI agents are no longer experiments. They are being positioned as ecosystems that can reason, act, and run across real enterprise workflows.
 
 This changes security fundamentally. Traditional models protect the perimeter. Agents don't have a perimeter. They dynamically call APIs, chain tools, and operate across systems and teams.
 
@@ -122,7 +122,7 @@ For telecom operators, this is especially urgent. Agents may span customer care,
 
 ## Governance Is Now the Bottleneck
 
-The shift at Google Cloud Next was clear: the problem is no longer "can we build agents?" It's "can we run them safely at scale?"
+The shift is clear: the problem is no longer "can we build agents?" It's "can we run them safely at scale?"
 
 Most organisations now know how to create agents. Far fewer are comfortable running large numbers of them across live systems. Governance frameworks built for human workflows or static software were not designed for autonomous systems that run continuously and make decisions.
 
@@ -188,7 +188,7 @@ By contrast, fully autonomous decision-making or broad unsupervised control intr
 
 ## Tiered Autonomy: People Still Matter
 
-One of the more encouraging themes at Google Cloud Next was balance. Full autonomy delivers efficiency, but not every decision should be hands-off.
+The encouraging trend is a focus on balance. Full autonomy delivers efficiency, but not every decision should be hands-off.
 
 <div class="tier-table">
 
