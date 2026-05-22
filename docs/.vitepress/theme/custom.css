@@ -318,4 +318,11 @@
   .compare-grid { grid-template-columns: 1fr; }
   .agent-grid { grid-template-columns: 1fr; }
   .arch-box { font-size: 11px; padding: 16px; }
+  .tier-table { overflow-x: auto; }
+  .tier-table table { font-size: 13px; }
+  .tier-table th, .tier-table td { padding: 8px 10px; }
+  .highlight-box { padding: 16px; }
+  .layer { flex-direction: column; gap: 8px; }
+  .layer-num { align-self: flex-start; }
+  .contribute-btn { padding: 12px 20px; width: 100%; text-align: center; box-sizing: border-box; }
 }
