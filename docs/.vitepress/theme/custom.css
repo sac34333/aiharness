@@ -89,7 +89,7 @@
   font-size: 14px;
   text-decoration: none !important;
   transition: background 0.2s ease, transform 0.15s ease;
-  margin: 8px 0;
+  margin: 8px 8px 8px 0;
 }
 .vp-doc .contribute-btn:hover {
   background: var(--vp-c-brand-2);

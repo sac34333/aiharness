@@ -1,8 +1,8 @@
 ---
-name: Propose an Article or Guide
+name: Propose a Contribution
 description: Suggest a new topic or submit a draft for The AI Harness
 labels: ["contribution"]
-title: "[Article/Guide] YOUR TOPIC HERE"
+title: "[Contribution] YOUR TOPIC HERE"
 body:
   - type: markdown
     attributes:
@@ -13,9 +13,12 @@ body:
     id: type
     attributes:
       label: What type of content?
+      description: |
+        **Technical Guide** = deep dive, tutorial, how-to. For engineers who need to understand and implement. Examples: caching strategies, agent taxonomy, Google ADK.
+        **Thought Leadership Article** = opinion, analysis, strategic perspective. For leaders who need clarity without the jargon. Examples: shadow AI risk, sovereign AI, AI offense before defense.
       options:
-        - Thought Leadership article (opinion, analysis, strategic perspective)
-        - Technical Guide (deep dive, tutorial, how-to)
+        - Technical Guide (deep dive, tutorial, how-to for engineers)
+        - Thought Leadership Article (opinion, analysis, strategic perspective for leaders)
         - Correction or improvement to existing content
     validations:
       required: true

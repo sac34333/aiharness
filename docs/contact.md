@@ -5,26 +5,27 @@ description: Contribute to The AI Harness or get in touch with Sachin Anand.
 
 ## Contribute to the Content
 
-The AI Harness is designed for community contributions. If you have:
-- A correction to existing content
-- A better code example
-- A case study or real-world pattern to add
-- A new topic worth covering
+The AI Harness has two types of content:
+
+- **Technical Guides** - deep dives, tutorials, how-tos. For engineers who need to understand how something works and implement it. Examples: caching strategies, agent taxonomy, Google ADK.
+- **Thought Leadership Articles** - opinions, analysis, strategic perspectives. For leaders who need clarity without the jargon. Examples: shadow AI risk, sovereign AI, AI offense before defense.
+
+If you have a correction, a better code example, a case study, or a new topic worth covering, here is how to contribute:
 
 ### Quick way: Propose an idea
 
-<a href="https://github.com/sac34333/aiharness/issues/new?template=propose-content.yml&labels=contribution" class="contribute-btn" target="_blank" rel="noopener">Propose an Article or Guide</a>
+<a href="https://github.com/sac34333/aiharness/issues/new?template=propose-content.yml&labels=contribution" class="contribute-btn" target="_blank" rel="noopener">Propose a Technical Guide</a> <a href="https://github.com/sac34333/aiharness/issues/new?template=propose-content.yml&labels=contribution" class="contribute-btn" target="_blank" rel="noopener">Propose a Thought Leadership Article</a>
 
-No draft needed - just a strong idea and a sentence on why it matters. We'll review and work with you on it.
+No draft needed - just a strong idea and a sentence on why it matters. We will review and work with you on it.
 
 ### If you prefer to write it yourself
 
-1. [Browse the guide on GitHub](https://github.com/sac34333/aiharness/tree/main/docs/guide){target="_blank"} or [browse articles](https://github.com/sac34333/aiharness/tree/main/docs/articles){target="_blank"}
+1. [Browse technical guides on GitHub](https://github.com/sac34333/aiharness/tree/main/docs/guide){target="_blank"} or [browse thought leadership articles](https://github.com/sac34333/aiharness/tree/main/docs/articles){target="_blank"}
 2. **To edit** - click any `.md` file, then click the pencil icon to edit
-3. **To add new content** - click "Add file" → "Create new file", name it `your-topic.md`, write in Markdown
+3. **To add new content** - click "Add file" - "Create new file", name it `your-topic.md`, write in Markdown
 4. Submit a pull request - every submission is reviewed before publishing
 
-All contributions must be `.md` files inside `docs/guide/` or `docs/articles/` only. All published contributions receive a byline with a link to your profile.
+Technical guides go in `docs/guide/`. Thought leadership articles go in `docs/articles/`. All published contributions receive a byline with a link to your profile.
 
 ### Report an issue
 

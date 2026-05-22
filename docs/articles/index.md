@@ -26,4 +26,4 @@ Strategic perspectives on AI adoption, security risk, and enterprise deployment 
 
 ---
 
-*Want to contribute an article? [Open a PR on GitHub](https://github.com/sac34333/aiharness) - all submissions reviewed before publishing.*
+*Want to contribute a thought leadership article? [Propose your idea](https://github.com/sac34333/aiharness/issues/new?template=propose-content.yml&labels=contribution) - no draft needed. All published contributions receive a byline.*
