@@ -74,8 +74,10 @@ Strategic perspectives on AI adoption, security risk, and enterprise deployment 
 
 ## Want to Contribute?
 
-This site is built from real deployments and real mistakes. If you have something worth sharing - an architecture decision, a production lesson, a pattern that works - [open a PR on GitHub](https://github.com/sac34333/aiharness).
+This site is built from real deployments and real mistakes. If you have something worth sharing - an architecture decision, a production lesson, a pattern that works - we want to hear from you.
 
-All contributions are reviewed before publishing.
+<a href="https://github.com/sac34333/aiharness/issues/new?template=propose-content.yml&labels=contribution" class="contribute-btn" target="_blank" rel="noopener">Propose an Article or Guide</a>
+
+No draft needed - just a strong idea. Or [browse existing content on GitHub](https://github.com/sac34333/aiharness/tree/main/docs){target="_blank"} and submit a pull request. All contributions receive a byline.
 
 </div>
