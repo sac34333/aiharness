@@ -78,6 +78,24 @@
   font-size: 14px;
 }
 
+/* ── Contribute button ── */
+.vp-doc .contribute-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--vp-c-brand-1);
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none !important;
+  transition: background 0.2s ease, transform 0.15s ease;
+  margin: 8px 0;
+}
+.vp-doc .contribute-btn:hover {
+  background: var(--vp-c-brand-2);
+  transform: translateY(-1px);
+}
+
 /* ── Diagram comparison grid (side-by-side WITHOUT/WITH) ── */
 .compare-grid {
   display: grid;

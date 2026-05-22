@@ -11,14 +11,24 @@ The AI Harness is designed for community contributions. If you have:
 - A case study or real-world pattern to add
 - A new topic worth covering
 
-The best way to contribute is directly via GitHub:
+### Quick way: Propose an idea
+
+<a href="https://github.com/sac34333/aiharness/issues/new?template=propose-content.yml&labels=contribution" class="contribute-btn">Propose an Article or Guide</a>
+
+No draft needed - just a strong idea and a sentence on why it matters. We'll review and work with you on it.
+
+### If you prefer to write it yourself
 
 1. [Browse the guide on GitHub](https://github.com/sac34333/aiharness/tree/main/docs/guide) or [browse articles](https://github.com/sac34333/aiharness/tree/main/docs/articles)
 2. **To edit** - click any `.md` file, then click the pencil icon to edit
 3. **To add new content** - click "Add file" → "Create new file", name it `your-topic.md`, write in Markdown
 4. Submit a pull request - every submission is reviewed before publishing
 
-All contributions must be `.md` files inside `docs/guide/` or `docs/articles/` only.
+All contributions must be `.md` files inside `docs/guide/` or `docs/articles/` only. All published contributions receive a byline with a link to your profile.
+
+### Report an issue
+
+<a href="https://github.com/sac34333/aiharness/issues/new?template=bug-report.yml&labels=bug" class="contribute-btn">Report a Bug or Issue</a>
 
 ---
 

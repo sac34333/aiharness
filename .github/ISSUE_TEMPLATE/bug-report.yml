@@ -1,0 +1,33 @@
+---
+name: Report a Bug or Issue
+description: Something broken, missing, or incorrect on the site
+labels: ["bug"]
+title: "[Bug] BRIEF DESCRIPTION"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please include as much detail as you can.
+
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      description: URL or page title
+      placeholder: "e.g. /guide/what-is-agent"
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong?
+      description: Describe the issue - broken link, typo, incorrect content, rendering problem, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix (optional)
+      description: If you know what the correct content should be, tell us here

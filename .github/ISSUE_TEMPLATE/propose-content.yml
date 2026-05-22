@@ -1,0 +1,66 @@
+---
+name: Propose an Article or Guide
+description: Suggest a new topic or submit a draft for The AI Harness
+labels: ["contribution"]
+title: "[Article/Guide] YOUR TOPIC HERE"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to The AI Harness! Fill out what you can below. You don't need a finished draft - a strong idea is enough to get started.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: What type of content?
+      options:
+        - Thought Leadership article (opinion, analysis, strategic perspective)
+        - Technical Guide (deep dive, tutorial, how-to)
+        - Correction or improvement to existing content
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Proposed title
+      description: Keep it specific and search-friendly
+      placeholder: "e.g. Why Prompt Caching Changes the Economics of AI Deployments"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What is this about?
+      description: 2-3 sentences on the core idea and why it matters now
+      placeholder: "e.g. Most teams don't realise prompt caching can cut inference costs by 90%. This guide explains the three caching layers and when to use each one."
+    validations:
+      required: true
+
+  - type: textarea
+    id: draft
+    attributes:
+      label: Draft or outline (optional)
+      description: Paste a draft, an outline, or key points. Not required - the summary above is enough to start a conversation.
+
+  - type: input
+    id: name
+    attributes:
+      label: Your name (for credit)
+      description: We add bylines to all published contributions
+      placeholder: "Sachin Anand"
+
+  - type: input
+    id: linkedin
+    attributes:
+      label: LinkedIn or social profile (optional)
+      description: We'll link to you in the byline
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      options:
+        - label: I agree that contributions will be published under the site's license and reviewed before publishing
+          required: true
