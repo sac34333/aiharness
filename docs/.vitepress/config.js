@@ -3,7 +3,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 
 export default withMermaid(defineConfig({
   title: 'The AI Harness',
-  description: 'AI Systems — From Theory to Production. Technical depth for engineers. Strategic clarity for leaders.',
+  description: 'AI Systems - From Theory to Production. Technical depth for engineers. Strategic clarity for leaders.',
   lang: 'en-US',
   cleanUrls: true,
 
@@ -11,6 +11,8 @@ export default withMermaid(defineConfig({
     ['meta', { name: 'theme-color', content: '#D97757' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'The AI Harness' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:site', content: '@sachin4' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     
     ['meta', { name: 'google-site-verification', content: 'kCRu2oxPQWDof9o5AYhns0ANhsEpnzg4Ho5BnLDdJbs' }],
@@ -76,7 +78,7 @@ export default withMermaid(defineConfig({
           text: '🛡️ Security',
           items: [
             { text: 'Shadow AI Risk', link: '/articles/shadow-ai' },
-            { text: 'Token Security — The Weakest Link', link: '/articles/token-security' },
+            { text: 'Token Security - The Weakest Link', link: '/articles/token-security' },
           ]
         },
         {
@@ -134,5 +136,21 @@ export default withMermaid(defineConfig({
   },
   mermaidPlugin: {
     class: 'mermaid'
+  },
+
+  transformHead({ pageData }) {
+    const title = pageData.frontmatter.title
+      ? `${pageData.frontmatter.title} - The AI Harness`
+      : 'The AI Harness'
+    const description = pageData.frontmatter.description || 'AI Systems - From Theory to Production. Technical depth for engineers. Strategic clarity for leaders.'
+    const url = `https://theaiharness.online${pageData.relativePath.replace(/\.md$/, '')}`
+
+    return [
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }],
+    ]
   }
 }))
